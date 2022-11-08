@@ -1,11 +1,16 @@
-const todo_task = (title) => {
+const todo_task = () => {
     return {
-        title, 
+        ...title(), 
         ...description(),
         ...dueDate(),
         ...priority(),
         ...completion(),
     }
+}
+const title = () => {
+    return {
+        title: () => {}
+     }
 }
 
 const description = () => {
