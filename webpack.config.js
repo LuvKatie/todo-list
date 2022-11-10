@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  mode: "development",
   entry: {
     index: './src/script/index.js',
     todo_tasks: './src/script/todo_tasks.js',
