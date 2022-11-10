@@ -1,0 +1,46 @@
+form {
+    display: grid;
+
+    grid-template: repeat(3, 1fr) / 1fr 2fr;
+
+    background-color: pink;
+}
+
+.title,
+.deadline,
+.priority {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    grid-column: 1 / 2;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    grid-column: 2 / -1;
+    grid-row: 1 / -1;
+
+    gap: 10px;
+}
+
+input#description {
+    height: 60%;
+    width: 75%;
+}
+
+.title {
+
+}
+
+.deadline {
+
+}
+
+.priority {
+
+}
