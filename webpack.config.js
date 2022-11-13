@@ -6,6 +6,8 @@ module.exports = {
   entry: {
     index: './src/script/index.js',
     todo_tasks: './src/script/todo_tasks.js',
+    form: './src/script/form.js',
+    nav: './src/script/nav.js',
   },
   plugins: [
     new HtmlWebpackPlugin({

@@ -16,7 +16,7 @@
   \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"task\": () => (/* binding */ task),\n/* harmony export */   \"todo_task\": () => (/* binding */ todo_task)\n/* harmony export */ });\nconst todo_task = (title, desc, dueDate, priority) => {\n    return {\n        title,\n        desc,\n        dueDate,\n        priority,\n    }\n}\n\nconst task = todo_task('Tony', 'Short Description', 'due date', 4);\n\n//# sourceURL=webpack://todo-list/./src/script/todo_tasks.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"task\": () => (/* binding */ task),\n/* harmony export */   \"todo_task\": () => (/* binding */ todo_task)\n/* harmony export */ });\nconst todo_task = (title, desc, dueDate, priority) => {\n    return {\n        title,\n        desc,\n        dueDate,\n        priority,\n    }\n}\n\nconst task = todo_task('Tony', 'Short Description', 'due date', 4);\n\n\n\n//# sourceURL=webpack://todo-list/./src/script/todo_tasks.js?");
 
 /***/ })
 
