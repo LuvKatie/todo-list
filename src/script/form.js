@@ -1,10 +1,10 @@
 const body = document.querySelector('body');
-const main = document.querySelector('main');
+const header = document.querySelector('header');
 
 let formLayout = (() => {
     const form = document.createElement('form');
     form.classList.add('task-creator', 'shown');
-    main.append(form);
+    header.append(form);
 })();
 
 const form = document.querySelector('.task-creator');
@@ -20,7 +20,7 @@ let formContent = (() => {
         let capFirst = name.slice(0, 1);
         let restOfName = name.slice(1);
 
-        label.innerHTML = `${capFirst.toUpperCase()}${restOfName}: `;
+        label.innerHTML = `${capFirst.toUpperCase()}${restOfName}`;
         label.setAttribute('for', `${name}`);
         label.setAttribute('class', `${name}`);
         input.setAttribute('id', `${name}`);
@@ -28,8 +28,15 @@ let formContent = (() => {
         form.append(label);
         label.append(input);
     });
-
 })();
+
+let formButton = (() => {
+    const submitBtn = document.createElement('input');
+    submitBtn.setAttribute('id', 'submit');
+    submitBtn.setAttribute('type', 'button');
+    submitBtn.setAttribute('value', '✔');
+    form.append(submitBtn);
+})()
 
 let descriptionFunc = (() => {
     const formDesc = document.querySelector('#description');
@@ -72,3 +79,13 @@ let priorityDropDown = (() => {
     priorityLabel.append(prioritySelect);
 })()
 
+let formBtnEvent = (() => {
+    const titleSelector = document.querySelector('#title');
+    const dateSelector = document.querySelector('#deadline');
+    const prioritySelector = document.querySelector('#priority');
+    const descSelector = document.querySelector('#description');
+    const formArr = [titleSelector, dateSelector, prioritySelector, descSelector];
+    const btnSelector = document.querySelector('#submit');
+
+    btnSelector.addEventListener('click', () => formArr.forEach(i => console.log(i.value)));
+})()

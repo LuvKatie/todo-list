@@ -1,6 +1,7 @@
 import '../styles/style.css';
 import '../styles/form.css';
 import '../styles/nav.css';
+import '../styles/main.css';
 
 
 const body = document.querySelector('body');
