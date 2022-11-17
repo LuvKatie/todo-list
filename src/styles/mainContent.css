@@ -1,0 +1,22 @@
+.projContainer {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+
+    padding-top: 20px;
+}
+
+.project {
+    display: grid;
+
+    grid-template: repeat(3, 1fr) / 1fr 1.2fr;
+    background-color: lightblue;
+
+    padding: 6px;
+
+    height: 80%;
+    width: 80%;
+
+    border: 1px solid black;
+}
