@@ -30,25 +30,18 @@ let formContent = (() => {
     });
 })();
 
-let formButton = (() => {
-    const submitBtn = document.createElement('input');
-    submitBtn.setAttribute('id', 'submit');
-    submitBtn.setAttribute('type', 'button');
-    submitBtn.setAttribute('value', '✔');
-    form.append(submitBtn);
-})()
 
 let descriptionFunc = (() => {
     const formDesc = document.querySelector('#description');
     formDesc.setAttribute('rows', 6);
     formDesc.setAttribute('cols', 60);
-
+    
 })();
 
 let titleFunc = (() => {
     const formText = document.querySelector('#title');
     formText.setAttribute('type', 'text');
-
+    
 })();
 
 let deadlineFunc = (() => {
@@ -60,13 +53,13 @@ let priorityDropDown = (() => {
     // Creating priority drop down selection
     const priorityLabel = document.createElement('label');
     const prioritySelect = document.createElement('select');
-
+    
     priorityLabel.innerHTML = 'Priority: ';
     priorityLabel.setAttribute('for', 'priority');
     priorityLabel.setAttribute('class', 'priority');
     prioritySelect.setAttribute('id', 'priority');
     prioritySelect.setAttribute('name', 'importance');
-
+    
     
     for(let i = 1; i <= 4; i++) {
         const option = document.createElement('option');
@@ -74,9 +67,17 @@ let priorityDropDown = (() => {
         option.innerHTML = `${i}`;
         prioritySelect.append(option);
     }
-
+    
     form.append(priorityLabel);
     priorityLabel.append(prioritySelect);
+})()
+
+let formButton = (() => {
+    const submitBtn = document.createElement('input');
+    submitBtn.setAttribute('id', 'submit');
+    submitBtn.setAttribute('type', 'button');
+    submitBtn.setAttribute('value', 'Create Project');
+    form.append(submitBtn);
 })()
 
 let formBtnEvent = (() => {

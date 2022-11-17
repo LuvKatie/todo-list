@@ -8,6 +8,7 @@ module.exports = {
     todo_tasks: './src/script/todo_tasks.js',
     form: './src/script/form.js',
     nav: './src/script/nav.js',
+    mainContent: './src/script/mainContent.js',
   },
   plugins: [
     new HtmlWebpackPlugin({

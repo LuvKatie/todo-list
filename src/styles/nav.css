@@ -5,6 +5,11 @@ nav {
     align-items: center;
 
     padding-top: 24px;
+
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+
+    background-color: #cbbcf6;
 }
 
 h2:hover {

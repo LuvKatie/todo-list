@@ -11,10 +11,10 @@
 form {
     display: grid;
 
-    grid-template: repeat(3, 1fr) / 1fr 2fr;
-    background-color: pink;
+    grid-template: repeat(3, 1fr) / 1fr 1.5fr .5fr;
+    background-color: #C7EFCF;
 
-    grid-row: 1 / 2;
+    height: 100%;
 }
 
 .hidden-form {
@@ -34,9 +34,46 @@ form {
     flex-direction: column;
     justify-content: center;
 
-    padding: 0px 12px;
+    padding-left: 24px;
 
     grid-column: 1 / 2;
+}
+
+form > label {
+    font-weight: 550;
+}
+
+form > label > * {
+    background-color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+form > label > *:focus {
+    outline: none;
+}
+
+#submit {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+    align-self: flex-end;
+
+    width: 110px;
+    height: 45px;
+
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 0 4px 3px lightblue;
+
+    font-weight: 600;
+    background-color: #6acafc;
+    color: white;
+}
+
+#submit:hover {
+    box-shadow: 0 0 10px 4px white;
+    transition: 0.6s;
+    cursor: pointer;
 }
 
 .description {
