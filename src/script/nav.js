@@ -12,11 +12,16 @@ let navDirectory = (() => {
     });
 })();
 
-let projectPopUp = (() => {
+let newProjEvent = (() => {
     const newProj = document.getElementById('new project');
     
     newProj.addEventListener('click', () => {
+        const modal = document.querySelector('.modal');
         const taskForm = document.querySelector('.task-creator');
-        taskForm.classList.toggle('hidden-form');
-    })
+        taskForm.classList.toggle('hidden');
+        taskForm.classList.toggle('shown');
+        modal.classList.toggle('hidden');
+        modal.classList.toggle('shown');
+    });
+
 })();

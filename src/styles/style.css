@@ -1,3 +1,11 @@
+:root {
+    --white: #fffbfb;
+    --grey: #f0eef1;
+    --black: #050505;
+    --light-green: #9fff9c;
+    --hover-green: #b5ffb3;
+}
+
 body {
     display: grid;
     grid-template: 1fr 4.5fr / 1fr 5fr;

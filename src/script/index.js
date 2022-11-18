@@ -1,7 +1,7 @@
 import '../styles/style.css';
 import '../styles/form.css';
 import '../styles/nav.css';
-import '../styles/main.css';
+import '../styles/mainContent.css';
 
 
 const body = document.querySelector('body');
