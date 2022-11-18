@@ -8,8 +8,7 @@ const body = document.querySelector('body');
 
 let mainLayout = (() => {
     const sideBar = document.createElement('nav');
-    const header = document.createElement('header');
     const content = document.createElement('main');
 
-    body.append(sideBar, header, content);
+    body.append(sideBar, content);
 })();

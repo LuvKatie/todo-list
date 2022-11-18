@@ -8,7 +8,7 @@
 
 body {
     display: grid;
-    grid-template: 1fr 4.5fr / 1fr 5fr;
+    grid-template: 1fr / 1fr 4.2fr;
 
     height: 100vh;
     width: 100vw;
@@ -16,15 +16,9 @@ body {
     margin: 0;
 }
 
-header,
 main,
 nav {
     border: 1px solid black;
-}
-
-header {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
 }
 
 main {
@@ -32,7 +26,6 @@ main {
     grid-template: repeat(4, 1fr) / 1fr;
 
     grid-column: 2 / 3;
-    grid-row: 2 / 3;
 
     background-color: #ddeedf;
 }
