@@ -31,3 +31,5 @@ export let projectDOM = function() {
     projectContainer.setAttribute('class', 'projContainer');
     main.append(projectContainer);
 }
+
+//gh-pages
