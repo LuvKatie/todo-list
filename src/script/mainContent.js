@@ -31,35 +31,3 @@ export let projectDOM = function() {
     projectContainer.setAttribute('class', 'projContainer');
     main.append(projectContainer);
 }
-
-// let projectFormTypes = function() {
-//     const projTitle = document.querySelector('.project > .title > input')
-//     projTitle.setAttribute('type', 'text');
-
-//     const projDate = document.querySelector('.project > .deadline > input')
-//     projDate.setAttribute('type', 'date');
-
-//     const projDesc = document.querySelector('.project > .description > textarea')
-//     projDesc.setAttribute('rows', 7);
-// };
-
-// let projectDropDown = function(form) {
-//     const priorityLabel = document.createElement('label');
-//     const prioritySelect = document.createElement('select');
-    
-//     priorityLabel.innerHTML = 'Priority';
-//     priorityLabel.setAttribute('for', 'priority');
-//     priorityLabel.setAttribute('class', 'priority');
-//     prioritySelect.setAttribute('name', 'importance');
-    
-    
-//     for(let i = 1; i <= 4; i++) {
-//         const option = document.createElement('option');
-//         option.setAttribute('value', i);
-//         option.innerHTML = `${i}`;
-//         prioritySelect.append(option);
-//     }
-    
-//     form.append(priorityLabel);
-//     priorityLabel.append(prioritySelect);
-// }
