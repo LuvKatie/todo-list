@@ -40,9 +40,9 @@ let formContent = (() => {
         let restOfName = name.slice(1);
 
         label.innerHTML = `${capFirst.toUpperCase()}${restOfName}`;
-        label.setAttribute('for', `${name}`);
-        label.setAttribute('class', `${name}`);
-        input.setAttribute('id', `${name}`);
+        label.setAttribute('for', `modal-${name}`);
+        label.setAttribute('class', `modal-${name}`);
+        input.setAttribute('id', `modal-${name}`);
 
         form.append(label);
         label.append(input);
@@ -51,18 +51,18 @@ let formContent = (() => {
 
 
 let descriptionFunc = (() => {
-    const formDesc = document.querySelector('#description');
+    const formDesc = document.querySelector('#modal-description');
     formDesc.setAttribute('rows', 7);
 })();
 
 let titleFunc = (() => {
-    const formText = document.querySelector('#title');
+    const formText = document.querySelector('#modal-title');
     formText.setAttribute('type', 'text');
     
 })();
 
 let deadlineFunc = (() => {
-    const formDate = document.querySelector('#deadline');
+    const formDate = document.querySelector('#modal-deadline');
     formDate.setAttribute('type', 'date');
 })();
 
@@ -72,9 +72,9 @@ let priorityDropDown = (() => {
     const prioritySelect = document.createElement('select');
     
     priorityLabel.innerHTML = 'Priority';
-    priorityLabel.setAttribute('for', 'priority');
-    priorityLabel.setAttribute('class', 'priority');
-    prioritySelect.setAttribute('id', 'priority');
+    priorityLabel.setAttribute('for', 'modal-priority');
+    priorityLabel.setAttribute('class', 'modal-priority');
+    prioritySelect.setAttribute('id', 'modal-priority');
     prioritySelect.setAttribute('name', 'importance');
     
     
@@ -94,19 +94,18 @@ let formButton = (() => {
     const submitBtn = document.createElement('button');
     btnWrapper.setAttribute('id', 'btn-wrap');
     submitBtn.setAttribute('id', 'submit');
+    submitBtn.setAttribute('type', 'button');
     submitBtn.innerHTML = 'Create';
     form.append(btnWrapper);
     btnWrapper.append(submitBtn);
 })()
 
 let formBtnEvent = (() => {
-    const titleSelector = document.querySelector('#title');
-    const dateSelector = document.querySelector('#deadline');
-    const prioritySelector = document.querySelector('#priority');
-    const descSelector = document.querySelector('#description');
+    const titleSelector = document.querySelector('#modal-title');
+    const dateSelector = document.querySelector('#modal-deadline');
+    const prioritySelector = document.querySelector('#modal-priority');
+    const descSelector = document.querySelector('#modal-description');
     const btnSelector = document.querySelector('#submit');
-    
-    const formArr = [titleSelector, dateSelector, prioritySelector, descSelector];
 
     btnSelector.addEventListener('click', () => {
         projectList.push(new Project(

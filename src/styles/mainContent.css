@@ -1,22 +1,38 @@
 .projContainer {
     display: flex;
     justify-content: center;
+    align-items: center;
     height: 100%;
     width: 100%;
-
-    padding-top: 20px;
 }
 
 .project {
     display: grid;
+    grid-template: 1fr / 3fr 1fr 1fr;
 
-    grid-template: repeat(3, 1fr) / 1fr 1.2fr;
     background-color: lightblue;
+    padding: 16px;
 
-    padding: 6px;
+    height: 30%;
+    width: 87%;
+    
+    border: 1px solid black;
+}
 
-    height: 80%;
-    width: 80%;
+
+.title,
+.deadline,
+.options {
+    grid-row: 1 / 2;
+}
+
+
+.project p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0;
 
     border: 1px solid black;
 }
