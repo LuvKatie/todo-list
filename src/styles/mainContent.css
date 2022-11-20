@@ -8,11 +8,12 @@
 
 .project {
     display: grid;
-    grid-template: 1fr / 3fr 1fr 1fr;
+    grid-template: 1fr / 0.2fr 2.5fr 1fr 1fr;
+    grid-template-areas:
+    "checkbox title deadline options";
 
     background-color: #ffffff;
     box-shadow: 0 2px 4px 2px lightgray;
-    
     
     height: 30%;
     width: 87%;
@@ -23,11 +24,11 @@
 }
 
 
-.title,
+/* .title,
 .deadline,
 .options {
-    grid-row: 1 / 2;
-}
+
+} */
 
 
 .project p {
@@ -39,4 +40,24 @@
 
     border: 1px solid black;
     margin: 0px 6px;
+}
+
+.complete {
+    grid-area: checkbox;
+    justify-self: center;
+    align-self: center;
+    width: 50%;
+    height: 50%;
+}
+
+.title {
+    grid-area: title;
+}
+
+.deadline {
+    grid-area: deadline;
+}
+
+.options {
+    grid-area: options;
 }
