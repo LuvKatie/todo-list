@@ -12,7 +12,7 @@
     grid-template-areas:
     "checkbox title deadline options";
 
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     box-shadow: 0 2px 4px 2px lightgray;
     
     height: 30%;
@@ -31,8 +31,11 @@
 
     margin: 0;
 
-    border: 1px solid black;
+    border: 1px solid lightgrey;
+    border-radius: 6px;
     margin: 0px 6px;
+
+    background-color: white;
 }
 
 .complete {

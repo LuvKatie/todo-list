@@ -114,7 +114,7 @@ let formBtnEvent = (() => {
             prioritySelector.value, 
             descSelector.value))
 
-        projectDOM();
+        projectDOM(titleSelector.value, dateSelector.value, prioritySelector.value, descSelector.value);
     });
 })()
 
