@@ -1,4 +1,4 @@
-import { Project, projectList, projectDOM } from "./mainContent";
+import { Project, projectList, projectDOM, projPriority } from "./mainContent";
 
 const body = document.querySelector('body');
 
@@ -114,7 +114,7 @@ let formBtnEvent = (() => {
             prioritySelector.value, 
             descSelector.value))
 
-        projectDOM(titleSelector.value, dateSelector.value, prioritySelector.value, descSelector.value);
+        projectDOM(titleSelector.value, dateSelector.value, prioritySelector.value);
     });
 })()
 
