@@ -31,9 +31,6 @@ export let projectDOM = function(title, date, priority) {
                 const taskIcon = new Image();
                 taskIcon.src = task;
                 taskIcon.classList.add('taskBtn');
-                taskIcon.addEventListener('click', () => {
-                    taskList(taskIcon);
-                });
                 const editIcon = new Image();
                 editIcon.src = edit;
                 editIcon.classList.add('editBtn');
@@ -44,6 +41,8 @@ export let projectDOM = function(title, date, priority) {
                 optionIcons.setAttribute('class', `${name}`);
                 optionIcons.append(taskIcon, editIcon, trashIcon);
                 projCard.append(optionIcons);
+
+                iconEvents(taskIcon);
                 break;
             default:
                 const txtDetail = document.createElement('p');
@@ -87,8 +86,16 @@ function projPriority(priority, projCard) {
     };
 }
 
-function taskList(task) {
-    console.log(task);
+function iconEvents(task, edit, trash) {
+    task.addEventListener('click', () => {
+        const iconParent = task.closest('.project');
+        iconParent.style.backgroundColor = 'red';
+    });
+}
+
+function taskList() {
+
+    console.log();
     // Grab specific project card so we can load specific tasks for that project
 }
 
