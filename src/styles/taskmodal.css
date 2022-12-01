@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Regular.ttf') format('truetype');
+    font-style: normal;
+}
+
 .task-modal * {
     border-radius: 16px;
 }
@@ -29,26 +35,36 @@
     width: 70px;
     height: 30px;
 
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease 0s;
+    letter-spacing: 1.5px;
+    cursor: pointer;
     border: none;
-
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
     font-weight: 600;
     font-size: 14px;
-    color: white;
+    color: rgb(65, 65, 65);
 }
 
-button.New {
+.task-header > button:hover {
+    background-color: #2EE59D;
+    box-shadow: 0px 6px 16px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+button.new {
     background-color: #fa9856;
 }
 
-button.Save {
+button.save {
     background-color: #7dd87d;
 }
 
-button.Edit {
+button.edit {
     background-color: #6eaff7;
 }
-
-
 
 .task-form > textarea {
     border: none;

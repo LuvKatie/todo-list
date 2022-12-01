@@ -11,7 +11,7 @@ export function taskModal() {
     const modalBackground = document.createElement('div');
     const modalForm = document.createElement('div');
     const formHeader = document.createElement('header');
-    const buttonClasses = ['New', 'Save', 'Edit'];
+    const buttonClasses = ['new', 'save', 'edit'];
 
     modalForm.appendChild(formHeader);
     for (let i = 0; i < 5; i++) {
