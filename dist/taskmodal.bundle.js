@@ -152,7 +152,7 @@ eval("module.exports = __webpack_require__.p + \"43f44a67e1e048a1a460.svg\";\n\n
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/script/mainContent.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/script/taskmodal.js");
 /******/ 	
 /******/ })()
 ;

@@ -1,15 +1,23 @@
 import task from '../images/task-svgrepo-com.svg';
 import trash from '../images/trash-bin-svgrepo-com.svg';
 import edit from '../images/write-svgrepo-com.svg';
+import { taskList } from './taskmodal.js';
 
 export const projectList = [];
+export const taskID = [];
+
 const main = document.querySelector('main');
 
-export const Project = function(title, date, priority, desc) {
+export const Project = function(title, date, priority, desc, id) {
     this.title = title;
     this.date = date;
     this.priority = priority;
     this.desc = desc;
+    this.id = id;
+}
+
+export const Task = function(id) {
+    this.id = id;
 }
 
 export let projectDOM = function(title, date, priority) {
@@ -42,7 +50,7 @@ export let projectDOM = function(title, date, priority) {
                 optionIcons.append(taskIcon, editIcon, trashIcon);
                 projCard.append(optionIcons);
 
-                iconEvents(taskIcon);
+                iconEvents(taskIcon, editIcon, trashIcon);
                 break;
             default:
                 const txtDetail = document.createElement('p');
@@ -87,16 +95,19 @@ function projPriority(priority, projCard) {
 }
 
 function iconEvents(task, edit, trash) {
+    
     task.addEventListener('click', () => {
         const iconParent = task.closest('.project');
-        iconParent.style.backgroundColor = 'red';
+        taskList(iconParent);
+    });
+    
+    edit.addEventListener('click', () => {
+        const iconParent = edit.closest('.project');
+        iconParent.style.backgroundColor = 'lightblue';
+    });
+    
+    trash.addEventListener('click', () => {
+        const iconParent = trash.closest('.project');
+        iconParent.style.backgroundColor = 'lightgreen';
     });
 }
-
-function taskList() {
-
-    console.log();
-    // Grab specific project card so we can load specific tasks for that project
-}
-
-//gh-pages

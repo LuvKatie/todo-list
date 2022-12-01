@@ -1,10 +1,10 @@
-import { Project, projectList, projectDOM, projPriority } from "./mainContent";
+import { Project, projectList, projectDOM, Task, taskID } from "./mainContent";
 
 const body = document.querySelector('body');
 
 let formModal = (() => {
     const modal = document.createElement('div');
-    modal.classList.add('modal', 'hidden');
+    modal.classList.add('project-modal', 'modal', 'hidden');
     body.append(modal);
 
     window.onclick = function(e) {
@@ -19,7 +19,7 @@ let formModal = (() => {
 })();
 
 let formLayout = (() => {
-    const modalSelect = document.querySelector('.modal');
+    const modalSelect = document.querySelector('.project-modal');
     const form = document.createElement('form');
     form.classList.add('task-creator', 'hidden');
     modalSelect.append(form);
@@ -112,7 +112,12 @@ let formBtnEvent = (() => {
             titleSelector.value, 
             dateSelector.value, 
             prioritySelector.value, 
-            descSelector.value))
+            descSelector.value,
+            projectList.length + 1))
+
+        taskID.push(new Task(
+            projectList.length,
+        ))
 
         projectDOM(titleSelector.value, dateSelector.value, prioritySelector.value);
     });

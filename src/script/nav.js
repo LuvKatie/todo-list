@@ -16,7 +16,7 @@ let newProjEvent = (() => {
     const newProj = document.getElementById('new project');
     
     newProj.addEventListener('click', () => {
-        const modal = document.querySelector('.modal');
+        const modal = document.querySelector('.project-modal');
         const taskForm = document.querySelector('.task-creator');
         taskForm.classList.toggle('hidden');
         taskForm.classList.toggle('shown');

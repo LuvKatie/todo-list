@@ -2,9 +2,12 @@ import '../styles/style.css';
 import '../styles/form.css';
 import '../styles/nav.css';
 import '../styles/mainContent.css';
+import '../styles/modal.css';
+import '../styles/taskmodal.css'
+import { taskModal } from './taskmodal';
 
 
-const body = document.querySelector('body');
+export const body = document.querySelector('body');
 
 let mainLayout = (() => {
     const sideBar = document.createElement('nav');
@@ -13,4 +16,4 @@ let mainLayout = (() => {
     body.append(sideBar, content);
 })();
 
-//gh-pages
+taskModal();
