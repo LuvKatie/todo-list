@@ -8,15 +8,17 @@
     border-radius: 16px;
 }
 
-.task-form {
+.task-display {
     display: grid;
     grid-template: repeat(6, 1fr) / 1fr;
-
-    justify-items: center;
-
+    
     height: 600px;
     width: 600px;
+}
 
+.task-details,
+.task-display {
+    justify-items: center;
     background-color: #dddddd;
 }
 
@@ -63,7 +65,7 @@ button.edit {
     background-color: #6eaff7;
 }
 
-.task-form > textarea {
+.task-display > textarea {
     height: 30%;
     width: 80%;
     border: none;
@@ -75,13 +77,67 @@ button.edit {
     transition: all 0.3s ease 0s;
 }
 
-.task-form > textarea:hover {
+.task-display > textarea:hover {
     box-shadow: 0px 0px 10px rgb(255, 255, 255);
     color: #fff;
     transform: translateY(-3px);
     cursor: pointer;
 }
 
-.task-form > textarea:focus {
+.task-display > textarea:focus {
     outline: none;
+}
+
+/* Task detail styling */
+
+/* parent container */
+
+.task-details {
+    display: grid;
+    position: relative;
+
+    grid-template: 1fr 4fr 1fr / 1fr;
+    align-items: center;
+
+    height: 300px;
+    width: 600px;
+}
+
+/* button */
+.task-details > .exit-details {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: -20px;
+    top: -20px;
+}
+
+/* textarea */
+.task-details > .title {
+    grid-row: 1 / 2;
+    height: 24%;
+    width: 60%;
+}
+
+/* textarea */
+.task-details > .details {
+    grid-row: 2 / 3;
+    height: 50%;
+    width: 80%;
+}
+
+.title,
+.details {
+    padding: 8px;
+    resize: none;
+    grid-column: 1 / 2;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+/* button */
+.task-details > .create-task {
+    grid-row: 3 / 4;
+    width: 120px;
+    height: 30px;
 }

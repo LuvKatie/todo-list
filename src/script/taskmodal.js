@@ -22,7 +22,8 @@ export function taskModal() {
     }
 
     modalBackground.classList.add('task-modal', 'modal', 'shown');
-    modalForm.classList.add('task-form');
+    // modalForm.classList.add('task-display');
+    modalForm.classList.add('hidden');
     formHeader.classList.add('task-header');
 
     modalBackground.appendChild(modalForm);
@@ -31,16 +32,41 @@ export function taskModal() {
 
 export function newTaskEvent() {
     const newBtn = document.querySelector('.new');
-    const modalForm = document.querySelector('.task-form');
+    const modalForm = document.querySelector('.task-display');
+    const taskDetails = document.querySelector('.task-details');
     newBtn.addEventListener('click', () => {
-        if (modalForm.children.length < 6) {
-            const task = document.createElement('textarea');
-            task.setAttribute('readonly', '');
-            modalForm.appendChild(task);
-        }
-
-        return;
+        modalForm.classList.add('hidden');
+        modalForm.classList.remove('task-display');
+        taskDetails.classList.toggle('hidden');
     });
+}
+
+export function newTaskDetails() {
+    const modalSelect = document.querySelector('.task-modal');
+    const newTaskContainer = document.createElement('div');
+    const createTaskBtn = document.createElement('button');
+    const exitBtn = document.createElement('button');
+    const textareaClasses = ['title', 'details'];
+
+    textareaClasses.forEach(item => {
+        const textArea = document.createElement('textarea');
+        textArea.classList.add(`${item}`);
+        if (item == 'title') {
+            textArea.setAttribute('maxlength', '43');
+            newTaskContainer.appendChild(textArea);
+        } else {
+            textArea.setAttribute('maxlength', '410');
+            newTaskContainer.appendChild(textArea);
+        }
+    });
+
+    createTaskBtn.classList.add('create-task');
+    exitBtn.classList.add('exit-details');
+
+    // newTaskContainer.classList.add('task-details', 'hidden');
+    newTaskContainer.classList.add('task-details');
+    newTaskContainer.append(createTaskBtn, exitBtn)
+    modalSelect.appendChild(newTaskContainer);
 }
 
 function additionalTasks(modalForm) {

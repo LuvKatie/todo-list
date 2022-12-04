@@ -4,7 +4,7 @@ import '../styles/nav.css';
 import '../styles/mainContent.css';
 import '../styles/modal.css';
 import '../styles/taskmodal.css'
-import { taskModal, newTaskEvent } from './taskmodal';
+import { taskModal, newTaskEvent, newTaskDetails } from './taskmodal';
 
 
 export const body = document.querySelector('body');
@@ -17,4 +17,5 @@ let mainLayout = (() => {
 })();
 
 taskModal();
+newTaskDetails();
 newTaskEvent();
