@@ -17,7 +17,7 @@
     height: 600px;
     width: 600px;
 
-    background-color: #e5e5e5;
+    background-color: #dddddd;
 }
 
 .task-header {
@@ -34,7 +34,6 @@
 .task-header > button {
     width: 70px;
     height: 30px;
-
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease 0s;
     letter-spacing: 1.5px;
@@ -43,10 +42,12 @@
     text-transform: uppercase;
     font-family: 'Roboto', sans-serif;
     font-weight: 600;
-    font-size: 14px;
-    color: rgb(65, 65, 65);
+    font-size: 12px;
+    color: rgb(68, 63, 63);
 }
 
+
+/* Button hover / transition effects by: https://codepen.io/seme332 */
 .task-header > button:hover {
     background-color: #2EE59D;
     box-shadow: 0px 6px 16px rgba(46, 229, 157, 0.4);
@@ -55,10 +56,6 @@
 }
 
 button.new {
-    background-color: #fa9856;
-}
-
-button.save {
     background-color: #7dd87d;
 }
 
@@ -67,14 +64,22 @@ button.edit {
 }
 
 .task-form > textarea {
-    border: none;
-
-    height: 60%;
+    height: 30%;
     width: 80%;
-
-    padding: 12px;
-
+    border: none;
+    border-radius: 6px;
+    padding: 8px;
     resize: none;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: all 0.3s ease 0s;
+}
+
+.task-form > textarea:hover {
+    box-shadow: 0px 0px 10px rgb(255, 255, 255);
+    color: #fff;
+    transform: translateY(-3px);
+    cursor: pointer;
 }
 
 .task-form > textarea:focus {

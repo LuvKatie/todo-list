@@ -11,19 +11,14 @@ export function taskModal() {
     const modalBackground = document.createElement('div');
     const modalForm = document.createElement('div');
     const formHeader = document.createElement('header');
-    const buttonClasses = ['new', 'save', 'edit'];
+    const buttonClasses = ['new', 'edit'];
 
     modalForm.appendChild(formHeader);
-    for (let i = 0; i < 5; i++) {
-        if (i < 3) {
-            const headerBtn = document.createElement('button');
-            headerBtn.classList.add(`${buttonClasses[i]}`);
-            headerBtn.innerHTML = `${buttonClasses[i]}`;
-            formHeader.appendChild(headerBtn);
-        }
-        const task = document.createElement('textarea');
-        task.setAttribute('readonly', '');
-        modalForm.appendChild(task);
+    for (let i = 0; i < buttonClasses.length; i++) {
+        const headerBtn = document.createElement('button');
+        headerBtn.classList.add(`${buttonClasses[i]}`);
+        headerBtn.innerHTML = `${buttonClasses[i]}`;
+        formHeader.appendChild(headerBtn);
     }
 
     modalBackground.classList.add('task-modal', 'modal', 'shown');
@@ -32,4 +27,22 @@ export function taskModal() {
 
     modalBackground.appendChild(modalForm);
     body.appendChild(modalBackground);
+}
+
+export function newTaskEvent() {
+    const newBtn = document.querySelector('.new');
+    const modalForm = document.querySelector('.task-form');
+    newBtn.addEventListener('click', () => {
+        if (modalForm.children.length < 6) {
+            const task = document.createElement('textarea');
+            task.setAttribute('readonly', '');
+            modalForm.appendChild(task);
+        }
+
+        return;
+    });
+}
+
+function additionalTasks(modalForm) {
+
 }
