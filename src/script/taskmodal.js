@@ -22,8 +22,7 @@ export function taskModal() {
     }
 
     modalBackground.classList.add('task-modal', 'modal', 'shown');
-    // modalForm.classList.add('task-display');
-    modalForm.classList.add('hidden');
+    modalForm.classList.add('task-display');
     formHeader.classList.add('task-header');
 
     modalBackground.appendChild(modalForm);
@@ -33,11 +32,15 @@ export function taskModal() {
 export function newTaskEvent() {
     const newBtn = document.querySelector('.new');
     const modalForm = document.querySelector('.task-display');
-    const taskDetails = document.querySelector('.task-details');
+    const taskDetails = document.querySelector('#task-details');
     newBtn.addEventListener('click', () => {
+        // Hide task modal
         modalForm.classList.add('hidden');
         modalForm.classList.remove('task-display');
+        // Reveal task detail modal
         taskDetails.classList.toggle('hidden');
+        taskDetails.classList.add('shown');
+        taskDetails.classList.toggle('task-details');
     });
 }
 
@@ -63,8 +66,8 @@ export function newTaskDetails() {
     createTaskBtn.classList.add('create-task');
     exitBtn.classList.add('exit-details');
 
-    // newTaskContainer.classList.add('task-details', 'hidden');
-    newTaskContainer.classList.add('task-details');
+    newTaskContainer.classList.add('hidden');
+    newTaskContainer.setAttribute('id', 'task-details');
     newTaskContainer.append(createTaskBtn, exitBtn)
     modalSelect.appendChild(newTaskContainer);
 }
