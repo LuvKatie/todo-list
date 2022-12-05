@@ -40,7 +40,7 @@ export function newTaskEvent() {
         modalForm.classList.remove('task-display');
         // Reveal task detail modal
         taskDetails.classList.toggle('hidden');
-        taskDetails.classList.add('shown');
+        // taskDetails.classList.add('shown');
         taskDetails.classList.toggle('task-details');
     });
 }
@@ -50,7 +50,6 @@ export function closeTaskDetails(exitBtn, modal) {
 
     exitBtn.addEventListener('click', () => {
         // Hide task detail modal
-        modal.classList.toggle('shown');
         modal.classList.toggle('task-details');
         modal.classList.toggle('hidden');
         // Reveal overview of task modal
