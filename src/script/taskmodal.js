@@ -22,8 +22,8 @@ export function taskModal() {
     }
 
     modalBackground.classList.add('task-modal', 'modal', 'shown');
-    // Change back to task-display
-    modalForm.classList.add('hidden');
+    modalForm.classList.add('task-display');
+    modalForm.setAttribute('id', 'task-display');
     formHeader.classList.add('task-header');
 
     modalBackground.appendChild(modalForm);
@@ -42,6 +42,20 @@ export function newTaskEvent() {
         taskDetails.classList.toggle('hidden');
         taskDetails.classList.add('shown');
         taskDetails.classList.toggle('task-details');
+    });
+}
+
+export function closeTaskDetails(exitBtn, modal) {
+    const taskDisplay = document.querySelector('#task-display');
+
+    exitBtn.addEventListener('click', () => {
+        // Hide task detail modal
+        modal.classList.toggle('shown');
+        modal.classList.toggle('task-details');
+        modal.classList.toggle('hidden');
+        // Reveal overview of task modal
+        taskDisplay.classList.toggle('hidden');
+        taskDisplay.classList.add('task-display');
     });
 }
 
@@ -72,11 +86,12 @@ export function newTaskDetails() {
     createTaskBtn.classList.add('create-task');
     exitBtn.classList.add('exit-details');
 
-    // newTaskContainer.classList.add('hidden');
-    newTaskContainer.classList.add('task-details');
+    newTaskContainer.classList.add('hidden');
     newTaskContainer.setAttribute('id', 'task-details');
     newTaskContainer.append(createTaskBtn, exitBtn)
     modalSelect.appendChild(newTaskContainer);
+
+    closeTaskDetails(exitBtn, newTaskContainer)
 }
 
 function additionalTasks(modalForm) {
