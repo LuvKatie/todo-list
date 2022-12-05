@@ -22,7 +22,8 @@ export function taskModal() {
     }
 
     modalBackground.classList.add('task-modal', 'modal', 'shown');
-    modalForm.classList.add('task-display');
+    // Change back to task-display
+    modalForm.classList.add('hidden');
     formHeader.classList.add('task-header');
 
     modalBackground.appendChild(modalForm);
@@ -56,17 +57,23 @@ export function newTaskDetails() {
         textArea.classList.add(`${item}`);
         if (item == 'title') {
             textArea.setAttribute('maxlength', '43');
+            textArea.setAttribute('placeholder', 'Task Title');
             newTaskContainer.appendChild(textArea);
         } else {
             textArea.setAttribute('maxlength', '410');
+            textArea.setAttribute('placeholder', 'Type your task details here ( 400 character MAX )');
             newTaskContainer.appendChild(textArea);
         }
     });
 
+    createTaskBtn.innerHTML = 'Create Task';
+    exitBtn.innerHTML = 'X';
+
     createTaskBtn.classList.add('create-task');
     exitBtn.classList.add('exit-details');
 
-    newTaskContainer.classList.add('hidden');
+    // newTaskContainer.classList.add('hidden');
+    newTaskContainer.classList.add('task-details');
     newTaskContainer.setAttribute('id', 'task-details');
     newTaskContainer.append(createTaskBtn, exitBtn)
     modalSelect.appendChild(newTaskContainer);
