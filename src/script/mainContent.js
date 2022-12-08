@@ -1,7 +1,7 @@
 import task from '../images/task-svgrepo-com.svg';
 import trash from '../images/trash-bin-svgrepo-com.svg';
 import edit from '../images/write-svgrepo-com.svg';
-import { taskList } from './taskmodal.js';
+import { taskListBtn } from './taskmodal.js';
 
 export const projectList = [];
 export const taskID = [];
@@ -98,7 +98,7 @@ function iconEvents(task, edit, trash) {
     
     task.addEventListener('click', () => {
         const iconParent = task.closest('.project');
-        taskList(iconParent);
+        taskListBtn(iconParent);
     });
     
     edit.addEventListener('click', () => {

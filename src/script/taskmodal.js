@@ -1,8 +1,16 @@
-import { projectList, taskID } from "./mainContent";
-
 const body = document.querySelector('body');
 
-export function taskList(parent) {
+let taskList = [];
+
+class MakeTask {
+    constructor(title, desc, id) {
+        this.title = title;
+        this.desc = desc;
+        this.id = id;
+    }
+}
+
+export function taskListBtn(parent) {
     console.log(parent);
     parent.style.backgroundColor = 'lightpink';
 }
@@ -58,6 +66,24 @@ export function closeTaskDetails(exitBtn, modal) {
     });
 }
 
+function createTaskDetails(createBtn) {
+    const title = document.querySelector('.title');
+    const desc = document.querySelector('.details');
+    const taskDisplay = document.getElementById('task-display');
+    createBtn.addEventListener('click', () => {
+        if (taskDisplay.childNodes.length <= 5 && title.value.length >= 3) {
+            taskList.push(new MakeTask(title.value, desc.value, taskList.length));
+            console.log(taskList);
+            const taskDetails = document.createElement('p');
+            taskDetails.innerHTML = taskList[taskList.length - 1].title;
+            taskDisplay.append(taskDetails);
+        } else {
+            alert('Title must be 3 characters min.')
+        }
+    });
+
+}
+
 export function newTaskDetails() {
     const modalSelect = document.querySelector('.task-modal');
     const newTaskContainer = document.createElement('div');
@@ -70,11 +96,11 @@ export function newTaskDetails() {
         textArea.classList.add(`${item}`);
         if (item == 'title') {
             textArea.setAttribute('maxlength', '43');
-            textArea.setAttribute('placeholder', 'Task Title');
+            textArea.setAttribute('placeholder', 'Task Title (3 characters MIN )');
             newTaskContainer.appendChild(textArea);
         } else {
             textArea.setAttribute('maxlength', '410');
-            textArea.setAttribute('placeholder', 'Type your task details here ( 400 character MAX )');
+            textArea.setAttribute('placeholder', 'Type your task details here ( 400 characters MAX )');
             newTaskContainer.appendChild(textArea);
         }
     });
@@ -90,7 +116,8 @@ export function newTaskDetails() {
     newTaskContainer.append(createTaskBtn, exitBtn)
     modalSelect.appendChild(newTaskContainer);
 
-    closeTaskDetails(exitBtn, newTaskContainer)
+    closeTaskDetails(exitBtn, newTaskContainer);
+    createTaskDetails(createTaskBtn);
 }
 
 function additionalTasks(modalForm) {
