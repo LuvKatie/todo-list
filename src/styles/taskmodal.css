@@ -61,7 +61,8 @@ button.new {
     background-color: #7dd87d;
 }
 
-button.edit {
+button.remove {
+    width: 84px;
     background-color: #6eaff7;
 }
 
@@ -93,10 +94,21 @@ button.edit {
     width: 80%;
     height: 25%;
     background-color: white;
+    color: #3c4245;
 
-    font-size: 18px;
+    text-align: center;
+
+    font-size: 20px;
     font-weight: 600;
-    padding: 6px 12px;
+    padding: 8px 18px;
+
+    transition: all 250ms;
+}
+
+#task-display > p:hover {
+    box-shadow: rgba(0, 0, 0, 0.3) 0 2px 6px;
+    transform: translateY(-2px);
+    cursor: pointer;
 }
 
 /* Task detail styling */
@@ -134,7 +146,8 @@ button.edit {
 }
 
 .task-details > .exit-details:hover,
-.task-details > .create-task:hover {
+.task-details > .create-task:hover,
+.task-details > .save-task:hover {
     box-shadow: rgba(0, 0, 0, 0.2) 0 4px 10px;
     cursor: pointer;
 }
@@ -173,14 +186,13 @@ button.edit {
     outline: none;
 }
 
-.task-details > .create-task {
+.task-details > .create-task,
+.task-details > .save-task {
     grid-row: 3 / 4;
-    width: 140px;
     height: 30px;
     border: none;
-
+    
     color: white;
-    background-color: #6eaff7;
 
     font-weight: 600;
     letter-spacing: 1px;
@@ -191,7 +203,18 @@ button.edit {
     transition: all 250ms;
 }
 
-.create-task:hover {
+.task-details > .create-task {
+    background-color: #6eaff7;
+    width: 140px;
+}
+
+.task-details > .save-task {
+    background-color: #f0d43a;
+    width: 120px;
+}
+
+.create-task:hover,
+.save-task:hover {
     color: #7dd87d;
     background-color: white;
     transform: translateY(-2px);
