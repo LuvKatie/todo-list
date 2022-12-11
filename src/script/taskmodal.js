@@ -67,9 +67,11 @@ export function removeTaskMode(task) {
     // const taskDisplay = document.getElementById('task-display');
     removeBtn.addEventListener('click', () => {
         const taskSelector = document.querySelectorAll('#task-display > p');
-        taskSelector.forEach(item => {
-            item.classList.add('remove-mode');
-        })
+        if (taskSelector.length > 0) {
+            taskSelector.forEach(item => {
+                item.classList.add('remove-mode');
+            });
+        }
     });
 }
 
