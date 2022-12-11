@@ -219,3 +219,7 @@ button.remove {
     background-color: white;
     transform: translateY(-2px);
 }
+
+#task-display > p.remove-mode {
+    background-color: red;
+}
