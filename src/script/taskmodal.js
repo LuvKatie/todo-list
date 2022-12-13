@@ -46,7 +46,7 @@ export function newTaskEvent() {
     const taskDisplay = document.querySelector('#task-display');
     const decisionBtn = document.querySelector('#decision');
     newBtn.addEventListener('click', () => {
-        if (taskDisplay.childNodes.length <= 5) {
+        if (taskDisplay.childNodes.length <= 6) {
         // Hide task modal
         modalForm.classList.add('hidden');
         modalForm.classList.remove('task-display');
@@ -62,17 +62,44 @@ export function newTaskEvent() {
     });
 }
 
-export function removeTaskMode(task) {
+export function exitModal() {
+    const taskDisplay = document.querySelector('#task-display');
+    const taskExitBtn = document.createElement('button');
+
+    exitModalFn(taskExitBtn);
+    taskExitBtn.setAttribute('id', 'task-modal-exit');
+    taskExitBtn.innerHTML = 'X';
+
+    taskDisplay.appendChild(taskExitBtn);
+}
+
+function exitModalFn(btn) {
+    const taskModal = document.querySelector('.task-modal');
+    btn.addEventListener('click', () => {
+        taskModal.classList.remove('shown');
+        taskModal.classList.add('hidden');
+    });
+}
+
+export function removeTaskMode() {
     const removeBtn = document.querySelector('.remove');
-    // const taskDisplay = document.getElementById('task-display');
+    const newBtn = document.querySelector('.new');
     removeBtn.addEventListener('click', () => {
         const taskSelector = document.querySelectorAll('#task-display > p');
         if (taskSelector.length > 0) {
             taskSelector.forEach(item => {
-                item.classList.add('remove-mode');
+                item.classList.toggle('remove-mode');
             });
         }
+
+        disableNew(newBtn);
     });
+}
+
+function disableNew(newBtn) {
+    newBtn.disabled ? newBtn.disabled = false : newBtn.disabled = true;
+    newBtn.classList.toggle('new-disabled');
+    newBtn.classList.toggle('new');
 }
 
 function toggleTaskDisplays(taskDisplay, detailsModal) {
@@ -99,7 +126,7 @@ function taskEditDetails(task, taskDisplay, detailsModal, currTask) {
         decisionBtn.classList.add('save-task');
         toggleTaskDisplays(taskDisplay, detailsModal);
         } else if (task.classList.contains('remove-mode')) {
-            // Place actual function to delete task
+            task.parentNode.removeChild(task);
         }
     });
 
@@ -136,9 +163,9 @@ function decisionBtnEvent(decisionBtn, detailsModal) {
     const desc = document.querySelector('.details');
     const taskDisplay = document.getElementById('task-display');
     decisionBtn.addEventListener('click', () => {
-        if (decisionBtn.innerHTML == 'create task' && taskDisplay.childNodes.length <= 5 && title.value.length >= 3) {
+        if (decisionBtn.innerHTML == 'create task' && taskDisplay.childNodes.length <= 6 && title.value.length >= 3) {
             createTask(title, desc, taskDisplay, detailsModal);
-        } else if (decisionBtn.innerHTML == 'save' && taskDisplay.childNodes.length <= 5 && title.value.length >= 3) {
+        } else if (decisionBtn.innerHTML == 'save' && taskDisplay.childNodes.length <= 6 && title.value.length >= 3) {
             taskEditDetails.saveTask();
         } else {
             alert('Title must be 3 characters min.')
@@ -151,15 +178,17 @@ function decisionBtnEvent(decisionBtn, detailsModal) {
 function createTask(title, desc, taskDisplay, detailsModal) {
         taskList.push(new MakeTask(title.value, desc.value, taskList.length));
         let currTask = taskList[taskList.length - 1];
+
         const taskDetails = document.createElement('p');
         taskDetails.setAttribute('id', `task-${taskList.length - 1}`);
         taskDetails.innerHTML = currTask.title;
+    // Clear Task Detail input areas
         title.value = '';
         desc.value = '';
+
         taskDisplay.append(taskDetails);
         toggleTaskDisplays(taskDisplay, detailsModal);
         taskEditDetails(taskDetails, taskDisplay, detailsModal, currTask);
-        console.log(taskList);
 }
 
 export function newTaskDetails() {

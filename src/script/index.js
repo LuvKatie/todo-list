@@ -4,7 +4,7 @@ import '../styles/nav.css';
 import '../styles/mainContent.css';
 import '../styles/modal.css';
 import '../styles/taskmodal.css'
-import { taskModal, newTaskEvent, newTaskDetails, removeTaskMode } from './taskmodal';
+import { taskModal, newTaskEvent, newTaskDetails, removeTaskMode, exitModal } from './taskmodal';
 
 
 export const body = document.querySelector('body');
@@ -20,3 +20,4 @@ taskModal();
 newTaskDetails();
 newTaskEvent();
 removeTaskMode();
+exitModal();

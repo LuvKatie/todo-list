@@ -21,7 +21,7 @@ export const Task = function(id) {
 }
 
 export let projectDOM = function(title, date, priority) {
-    const projSections = ['complete', 'title', 'deadline', 'options'];
+    const projSections = ['complete', 'proj-title', 'deadline', 'options'];
     const projectContainer = document.createElement('div');
     const projCard = document.createElement('div');
 
@@ -55,7 +55,7 @@ export let projectDOM = function(title, date, priority) {
             default:
                 const txtDetail = document.createElement('p');
 
-                if(name == 'title') {
+                if(name == 'proj-title') {
                     txtDetail.innerHTML = `${title}`;
                 } else if(name == 'deadline') {
                     txtDetail.innerHTML = `${date}`;

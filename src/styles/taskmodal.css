@@ -11,6 +11,7 @@
 .task-display {
     display: grid;
     grid-template: repeat(6, 1fr) / 1fr;
+    position: relative;
     
     height: 600px;
     width: 600px;
@@ -50,7 +51,8 @@
 
 
 /* Button hover / transition effects by: https://codepen.io/seme332 */
-.task-header > button:hover {
+.task-header > .new:hover,
+.task-header > .remove:hover {
     background-color: #2EE59D;
     box-shadow: 0px 6px 16px rgba(46, 229, 157, 0.4);
     color: #fff;
@@ -59,6 +61,12 @@
 
 button.new {
     background-color: #7dd87d;
+}
+
+button.new-disabled {
+    background-color: lightslategray;
+    color: rgb(174, 197, 219);
+    cursor: default;
 }
 
 button.remove {
@@ -111,6 +119,34 @@ button.remove {
     cursor: pointer;
 }
 
+#task-display > p.remove-mode {
+    background-color: #f95959;
+    color: whitesmoke;
+}
+
+#task-modal-exit {
+    height: 33px;
+    width: 33px;
+
+    right: -14px;
+    top: -14px;
+}
+
+#task-modal-exit,
+.exit-details {
+    position: absolute;
+
+    border: none;
+    font-weight: 600;
+    text-align: center;
+    color: white;
+    background-color: #f95959;
+
+    transition: all 250ms;
+
+    padding: 0;
+}
+
 /* Task detail styling */
 
 .task-details {
@@ -127,32 +163,23 @@ button.remove {
 }
 
 .task-details > .exit-details {
-    position: absolute;
-
     width: 30px;
     height: 30px;
     right: -12px;
     top: -12px;
 
-    border: none;
-    font-weight: 600;
-    text-align: center;
-    color: white;
-    background-color: #f95959;
-
-    transition: all 250ms;
-
-    padding: 0;
 }
 
 .task-details > .exit-details:hover,
 .task-details > .create-task:hover,
-.task-details > .save-task:hover {
+.task-details > .save-task:hover,
+#task-modal-exit:hover{
     box-shadow: rgba(0, 0, 0, 0.2) 0 4px 10px;
     cursor: pointer;
 }
 
-.exit-details:hover {
+.exit-details:hover,
+#task-modal-exit:hover {
     color: #f95959;
     background-color: white;
     transform: translateY(-1px);
@@ -218,8 +245,4 @@ button.remove {
     color: #7dd87d;
     background-color: white;
     transform: translateY(-2px);
-}
-
-#task-display > p.remove-mode {
-    background-color: red;
 }
