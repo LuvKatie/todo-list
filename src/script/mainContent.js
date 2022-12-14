@@ -89,7 +89,11 @@ function iconEvents(task, edit, trash) {
         
         taskDisplay.classList.remove('hidden');
         taskDisplay.classList.add('shown');
-        populateTasks(iconParent);
+
+        // Able to add a class to show this project is selected
+        // But will eventually need to erase all other instances of selected-proj to make sure only 1 element can hold this class at a time.
+        
+        iconParent.classList.add('selected-proj');
     });
     
     edit.addEventListener('click', () => {

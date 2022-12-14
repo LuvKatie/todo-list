@@ -1,24 +1,9 @@
 const body = document.querySelector('body');
-
-let taskList = [];
-let currProject;
-
-export function populateTasks(id) {
-    console.log(id);
-}
-
-class Project {
-    constructor (title, date, priority, desc, id) {
-        this.title = title;
-        this.date = date;
-        this.priority = priority;
-        this.desc = desc;
-        this.id = id;
-    }
-}
+const main = document.querySelector('main');
 
 class ProjectTasks {
-    constructor(task1, task2, task3, task4, task5) {
+    constructor(id, task1, task2, task3, task4, task5) {
+        this.id = id;
         this.task1 = task1;
         this.task2 = task2;
         this.task3 = task3;
@@ -28,10 +13,9 @@ class ProjectTasks {
 }
 
 class MakeTask {
-    constructor(title, desc, id) {
+    constructor(title, desc) {
         this.title = title;
         this.desc = desc;
-        this.id = id;
     }
 }
 
@@ -184,7 +168,8 @@ function decisionBtnEvent(decisionBtn, detailsModal) {
     const taskDisplay = document.getElementById('task-display');
     decisionBtn.addEventListener('click', () => {
         if (decisionBtn.innerHTML == 'create task' && taskDisplay.childNodes.length <= 6 && title.value.length >= 3) {
-            console.log(currProject);
+            const selectedProj = document.querySelector('.selected-proj');
+            console.log(selectedProj);
             createTask(title, desc, taskDisplay, detailsModal);
         } else if (decisionBtn.innerHTML == 'save' && taskDisplay.childNodes.length <= 6 && title.value.length >= 3) {
             taskEditDetails.saveTask();
@@ -197,19 +182,34 @@ function decisionBtnEvent(decisionBtn, detailsModal) {
 
 // Create and append task to Task Display modal
 function createTask(title, desc, taskDisplay, detailsModal) {
-    // projectList[0].tasks[0] = new MakeTask(title.value, desc.value, taskList.length);
-        let currTask = taskList[taskList.length - 1];
 
-        const taskDetails = document.createElement('p');
-        taskDetails.setAttribute('id', `task-${taskList.length - 1}`);
-        taskDetails.innerHTML = currTask.title;
+    // Was able to grab currently selected project with the class and variable ' selected-proj / selectedProj '
+    // We can now evaulate the id of the currently selected project and now create a new Project Object
+    // by comparing to our empty currProjectList array to main.childNodes.length
+    // basically if the currProjectList is behind in length it will create a new instance of a Project Object and label it the currently selected's id
+    // Now we can start manipulating the instance and fill it with unique tasks
+    // And any time someone chooses to look at a project's tasks it will check to see if the instance exists in the array
+    // if it does not exist it will just create a new one and the next time they click it again it should load up that instance
+    // And if it does it will populate the taskDisplay with the instance's unique tasks created previously
+
+
+    // let taskCounter = taskDisplay.childNodes.length;
+    //     let currTask = taskList[taskList.length - 1];
+
+    //     const taskDetails = document.createElement('p');
+    //     taskDetails.setAttribute('id', `task-${taskList.length - 1}`);
+    //     taskDetails.innerHTML = currTask.title;
+
+
     // Clear Task Detail input areas
-        title.value = '';
-        desc.value = '';
 
-        taskDisplay.append(taskDetails);
-        toggleTaskDisplays(taskDisplay, detailsModal);
-        taskEditDetails(taskDetails, taskDisplay, detailsModal, currTask);
+
+        // title.value = '';
+        // desc.value = '';
+
+        // taskDisplay.append(taskDetails);
+        // toggleTaskDisplays(taskDisplay, detailsModal);
+        // taskEditDetails(taskDetails, taskDisplay, detailsModal, currTask);
 }
 
 export function newTaskDetails() {

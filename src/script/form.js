@@ -1,5 +1,15 @@
 import { projectDOM } from "./mainContent";
 
+class Project {
+    constructor (title, date, priority, desc, id) {
+        this.title = title;
+        this.date = date;
+        this.priority = priority;
+        this.desc = desc;
+        this.id = id;
+    }
+}
+
 const body = document.querySelector('body');
 
 let formModal = (() => {
