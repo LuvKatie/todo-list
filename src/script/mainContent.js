@@ -81,6 +81,20 @@ function projPriority(priority, projCard) {
     };
 }
 
+// Filters the project elements to remove selected-proj class if they were not the intended target
+function selectedProject(iconParent) {
+    iconParent.classList.add('selected-proj');
+    const includesClass = document.querySelectorAll('main > div > .selected-proj');
+
+    if (includesClass.length > 1) {
+        includesClass.forEach(e => {
+            if (e.classList.contains('selected-proj') && e !== iconParent) {
+                e.classList.remove('selected-proj');
+            }
+        });
+    }
+}
+
 function iconEvents(task, edit, trash) {
     
     task.addEventListener('click', () => {
@@ -89,11 +103,8 @@ function iconEvents(task, edit, trash) {
         
         taskDisplay.classList.remove('hidden');
         taskDisplay.classList.add('shown');
-
-        // Able to add a class to show this project is selected
-        // But will eventually need to erase all other instances of selected-proj to make sure only 1 element can hold this class at a time.
         
-        iconParent.classList.add('selected-proj');
+        selectedProject(iconParent);
     });
     
     edit.addEventListener('click', () => {

@@ -127,6 +127,9 @@ let formBtnEvent = (() => {
 
         // projectList[projectList.length - 1].tasks = new ProjectTasks();
 
+
+        // STILL NEED TO PROVIDE THIS CONTENT INTO AN OBJECT SO WE CAN DISPLAY IT UPON EXPANDING A PROJECT
+
         projectDOM(titleSelector.value, dateSelector.value, prioritySelector.value);
     });
 })();
