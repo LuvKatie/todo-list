@@ -1,5 +1,4 @@
 const body = document.querySelector('body');
-const main = document.querySelector('main');
 
 class ProjectTasks {
     constructor(id, task1, task2, task3, task4, task5) {
@@ -9,6 +8,12 @@ class ProjectTasks {
         this.task3 = task3;
         this.task4 = task4;
         this.task5 = task5;
+    }
+}
+
+class ProjectList {
+    constructor(id) {
+        this.id = id;
     }
 }
 
@@ -168,8 +173,6 @@ function decisionBtnEvent(decisionBtn, detailsModal) {
     const taskDisplay = document.getElementById('task-display');
     decisionBtn.addEventListener('click', () => {
         if (decisionBtn.innerHTML == 'create task' && taskDisplay.childNodes.length <= 6 && title.value.length >= 3) {
-            const selectedProj = document.querySelector('.selected-proj');
-            console.log(selectedProj);
             createTask(title, desc, taskDisplay, detailsModal);
         } else if (decisionBtn.innerHTML == 'save' && taskDisplay.childNodes.length <= 6 && title.value.length >= 3) {
             taskEditDetails.saveTask();
@@ -182,6 +185,14 @@ function decisionBtnEvent(decisionBtn, detailsModal) {
 
 // Create and append task to Task Display modal
 function createTask(title, desc, taskDisplay, detailsModal) {
+    const main = document.querySelector('main');
+    console.log(main.childNodes.length);
+    console.log(document.querySelector('.selected-proj').id);
+
+    // PSEUDO CODE:
+    // If projectList array does not contain an object with the id property of document.querySelector('.selected-proj').id
+    // we will create a new ProjectList object and provide it with the selected-proj's id
+    // now we will take any newly created tasks and attach it to the matching ProjectList object's tasks
 
     // Was able to grab currently selected project with the class and variable ' selected-proj / selectedProj '
     // We can now evaulate the id of the currently selected project and now create a new Project Object
