@@ -1,6 +1,31 @@
 const body = document.querySelector('body');
 
 let taskList = [];
+let currProject;
+
+export function populateTasks(id) {
+    console.log(id);
+}
+
+class Project {
+    constructor (title, date, priority, desc, id) {
+        this.title = title;
+        this.date = date;
+        this.priority = priority;
+        this.desc = desc;
+        this.id = id;
+    }
+}
+
+class ProjectTasks {
+    constructor(task1, task2, task3, task4, task5) {
+        this.task1 = task1;
+        this.task2 = task2;
+        this.task3 = task3;
+        this.task4 = task4;
+        this.task5 = task5;
+    }
+}
 
 class MakeTask {
     constructor(title, desc, id) {
@@ -8,11 +33,6 @@ class MakeTask {
         this.desc = desc;
         this.id = id;
     }
-}
-
-export function taskListBtn(parent) {
-    console.log(parent);
-    parent.style.backgroundColor = 'lightpink';
 }
 
 export function taskModal() {
@@ -29,7 +49,7 @@ export function taskModal() {
         formHeader.appendChild(headerBtn);
     }
 
-    modalBackground.classList.add('task-modal', 'modal', 'shown');
+    modalBackground.classList.add('task-modal', 'modal', 'hidden');
     modalForm.classList.add('task-display');
     modalForm.setAttribute('id', 'task-display');
     formHeader.classList.add('task-header');
@@ -110,7 +130,7 @@ function toggleTaskDisplays(taskDisplay, detailsModal) {
         taskDisplay.classList.toggle('task-display');
 }
 
-// Editing an existing task and implementing the ability to save said task
+// Edit an existing task / ability to save said task
 function taskEditDetails(task, taskDisplay, detailsModal, currTask) {
     const titleSelect = document.querySelector('.title');
     const descSelect = document.querySelector('.details');
@@ -164,6 +184,7 @@ function decisionBtnEvent(decisionBtn, detailsModal) {
     const taskDisplay = document.getElementById('task-display');
     decisionBtn.addEventListener('click', () => {
         if (decisionBtn.innerHTML == 'create task' && taskDisplay.childNodes.length <= 6 && title.value.length >= 3) {
+            console.log(currProject);
             createTask(title, desc, taskDisplay, detailsModal);
         } else if (decisionBtn.innerHTML == 'save' && taskDisplay.childNodes.length <= 6 && title.value.length >= 3) {
             taskEditDetails.saveTask();
@@ -176,7 +197,7 @@ function decisionBtnEvent(decisionBtn, detailsModal) {
 
 // Create and append task to Task Display modal
 function createTask(title, desc, taskDisplay, detailsModal) {
-        taskList.push(new MakeTask(title.value, desc.value, taskList.length));
+    // projectList[0].tasks[0] = new MakeTask(title.value, desc.value, taskList.length);
         let currTask = taskList[taskList.length - 1];
 
         const taskDetails = document.createElement('p');
@@ -225,8 +246,4 @@ export function newTaskDetails() {
 
     exitBtnEvent(exitBtn, newTaskContainer);
     decisionBtnEvent(decisionBtn, newTaskContainer);
-}
-
-function additionalTasks(modalForm) {
-
 }

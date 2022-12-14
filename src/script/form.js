@@ -1,4 +1,4 @@
-import { Project, projectList, projectDOM, Task, taskID } from "./mainContent";
+import { projectDOM } from "./mainContent";
 
 const body = document.querySelector('body');
 
@@ -108,19 +108,17 @@ let formBtnEvent = (() => {
     const btnSelector = document.querySelector('#submit');
 
     btnSelector.addEventListener('click', () => {
-        projectList.push(new Project(
-            titleSelector.value, 
-            dateSelector.value, 
-            prioritySelector.value, 
-            descSelector.value,
-            projectList.length + 1))
+        // projectList.push(new Project(
+        //     titleSelector.value, 
+        //     dateSelector.value, 
+        //     prioritySelector.value, 
+        //     descSelector.value,
+        //     projectList.length + 1))
 
-        taskID.push(new Task(
-            projectList.length,
-        ))
+        // projectList[projectList.length - 1].tasks = new ProjectTasks();
 
         projectDOM(titleSelector.value, dateSelector.value, prioritySelector.value);
     });
-})()
+})();
 
 //gh-pages

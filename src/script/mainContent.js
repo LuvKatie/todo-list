@@ -1,24 +1,11 @@
 import task from '../images/task-svgrepo-com.svg';
 import trash from '../images/trash-bin-svgrepo-com.svg';
 import edit from '../images/write-svgrepo-com.svg';
-import { taskListBtn } from './taskmodal.js';
 
-export const projectList = [];
-export const taskID = [];
+import { populateTasks } from './taskmodal';
 
 const main = document.querySelector('main');
 
-export const Project = function(title, date, priority, desc, id) {
-    this.title = title;
-    this.date = date;
-    this.priority = priority;
-    this.desc = desc;
-    this.id = id;
-}
-
-export const Task = function(id) {
-    this.id = id;
-}
 
 export let projectDOM = function(title, date, priority) {
     const projSections = ['complete', 'proj-title', 'deadline', 'options'];
@@ -68,7 +55,7 @@ export let projectDOM = function(title, date, priority) {
             }
         });
         
-        projCard.setAttribute('id', `project-${projectList.length}`);
+        projCard.setAttribute('id', `project-${main.childNodes.length}`);
         projCard.setAttribute('class', `project`);
         projectContainer.append(projCard)
         projectContainer.setAttribute('class', 'projContainer');
@@ -98,7 +85,11 @@ function iconEvents(task, edit, trash) {
     
     task.addEventListener('click', () => {
         const iconParent = task.closest('.project');
-        taskListBtn(iconParent);
+        const taskDisplay = document.querySelector('.task-modal');
+        
+        taskDisplay.classList.remove('hidden');
+        taskDisplay.classList.add('shown');
+        populateTasks(iconParent);
     });
     
     edit.addEventListener('click', () => {
