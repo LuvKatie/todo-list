@@ -192,11 +192,9 @@ function createTask(title, desc, taskDisplay, detailsModal) {
     const mainChilds = main.childNodes.length;
     const projects = projectList.length;
 
-    // console.log(main.childNodes.length);
-    // console.log(document.querySelector('.selected-proj').id);
-
     let currSelectedProj;
 
+    // Adds new instance of project as a new object in projectList array
     if (projects < mainChilds) {
         const found = projectList.some(i => i.id == currSelectedProjID);
         if (!found) {
@@ -204,11 +202,11 @@ function createTask(title, desc, taskDisplay, detailsModal) {
             console.log(projectList);
         }
     }
-
+    // Sets currSelectedProj as the selected project's object instance via matching id's
     projectList.forEach(i => {
         if (i.id == currSelectedProjID) {
             currSelectedProj = i;
-            console.log(currSelectedProj);
+            console.log(`Currently selected project: ${currSelectedProj}`);
         };
     });
 
