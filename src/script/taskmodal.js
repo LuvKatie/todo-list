@@ -1,5 +1,7 @@
 const body = document.querySelector('body');
 
+let projectList = [];
+
 class ProjectTasks {
     constructor(id, task1, task2, task3, task4, task5) {
         this.id = id;
@@ -11,7 +13,7 @@ class ProjectTasks {
     }
 }
 
-class ProjectList {
+class ProjectID {
     constructor(id) {
         this.id = id;
     }
@@ -186,8 +188,25 @@ function decisionBtnEvent(decisionBtn, detailsModal) {
 // Create and append task to Task Display modal
 function createTask(title, desc, taskDisplay, detailsModal) {
     const main = document.querySelector('main');
+    const currSelectedProjID = document.querySelector('.selected-proj').id;
+    const mainChilds = main.childNodes.length;
+    const projects = projectList.length;
+
     console.log(main.childNodes.length);
     console.log(document.querySelector('.selected-proj').id);
+
+    if (projects < mainChilds) {
+        const found = projectList.some(i => i.id == currSelectedProjID);
+        if (!found) {
+            console.log(projectList);
+            projectList.push(new ProjectID(currSelectedProjID));
+            console.log(projectList);
+            console.log('We found nothing!');
+        } else {
+            console.log(projectList);
+            console.log('We found something!')
+        }
+    }
 
     // PSEUDO CODE:
     // If projectList array does not contain an object with the id property of document.querySelector('.selected-proj').id
