@@ -1,6 +1,7 @@
 const body = document.querySelector('body');
 
 let projectList = [];
+let taskList = [];
 
 class ProjectTasks {
     constructor(id, task1, task2, task3, task4, task5) {
@@ -203,26 +204,15 @@ function createTask(title, desc, taskDisplay, detailsModal) {
         }
     }
     // Sets currSelectedProj as the selected project's object instance via matching id's
+    // Will use this same function to create unique task objects that correlate to these new project instances
+    // Note to self: I have created a separate array that will work in tandem with projectList and this is taskList
+    // This method below will create new ProjectTasks instances that will contain the same unique id as the currSelectedProj
     projectList.forEach(i => {
         if (i.id == currSelectedProjID) {
             currSelectedProj = i;
             console.log(currSelectedProj);
         };
     });
-
-    // PSEUDO CODE:
-    // If projectList array does not contain an object with the id property of document.querySelector('.selected-proj').id
-    // we will create a new ProjectList object and provide it with the selected-proj's id
-    // now we will take any newly created tasks and attach it to the matching ProjectList object's tasks
-
-    // Was able to grab currently selected project with the class and variable ' selected-proj / selectedProj '
-    // We can now evaulate the id of the currently selected project and now create a new Project Object
-    // by comparing to our empty currProjectList array to main.childNodes.length
-    // basically if the currProjectList is behind in length it will create a new instance of a Project Object and label it the currently selected's id
-    // Now we can start manipulating the instance and fill it with unique tasks
-    // And any time someone chooses to look at a project's tasks it will check to see if the instance exists in the array
-    // if it does not exist it will just create a new one and the next time they click it again it should load up that instance
-    // And if it does it will populate the taskDisplay with the instance's unique tasks created previously
 
 
     // let taskCounter = taskDisplay.childNodes.length;
