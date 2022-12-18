@@ -206,7 +206,7 @@ function createTask(title, desc, taskDisplay, detailsModal) {
     projectList.forEach(i => {
         if (i.id == currSelectedProjID) {
             currSelectedProj = i;
-            console.log(`Currently selected project: ${currSelectedProj}`);
+            console.log(currSelectedProj);
         };
     });
 
