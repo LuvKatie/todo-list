@@ -192,21 +192,25 @@ function createTask(title, desc, taskDisplay, detailsModal) {
     const mainChilds = main.childNodes.length;
     const projects = projectList.length;
 
-    console.log(main.childNodes.length);
-    console.log(document.querySelector('.selected-proj').id);
+    // console.log(main.childNodes.length);
+    // console.log(document.querySelector('.selected-proj').id);
+
+    let currSelectedProj;
 
     if (projects < mainChilds) {
         const found = projectList.some(i => i.id == currSelectedProjID);
         if (!found) {
-            console.log(projectList);
             projectList.push(new ProjectID(currSelectedProjID));
             console.log(projectList);
-            console.log('We found nothing!');
-        } else {
-            console.log(projectList);
-            console.log('We found something!')
         }
     }
+
+    projectList.forEach(i => {
+        if (i.id == currSelectedProjID) {
+            currSelectedProj = i;
+            console.log(currSelectedProj);
+        };
+    });
 
     // PSEUDO CODE:
     // If projectList array does not contain an object with the id property of document.querySelector('.selected-proj').id
