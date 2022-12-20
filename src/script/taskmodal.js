@@ -2,6 +2,7 @@ const body = document.querySelector('body');
 
 let projectList = [];
 let projectTaskList = [];
+let selectedTask;
 
 class ProjectTasks {
     constructor(id, task1, task2, task3, task4, task5) {
@@ -123,7 +124,7 @@ function toggleTaskDisplays(taskDisplay, detailsModal) {
 }
 
 // Edit an existing task / ability to save said task
-function taskEditDetails(task, taskDisplay, detailsModal, currTask) {
+function taskEditDetails(task, taskDisplay, detailsModal, currProj, currTask) {
     const titleSelect = document.querySelector('.title');
     const descSelect = document.querySelector('.details');
     const decisionBtn = document.querySelector('#decision');
@@ -131,24 +132,38 @@ function taskEditDetails(task, taskDisplay, detailsModal, currTask) {
     
     task.addEventListener('click', () => {
         if (!task.classList.contains('remove-mode')) {
-        titleSelect.value = currTask.title;
-        descSelect.value = currTask.desc;
+        titleSelect.value = currProj[currTask].title;
+        descSelect.value = currProj[currTask].desc;
         decisionBtn.innerHTML = 'save';
         decisionBtn.classList.remove('create-task');
         decisionBtn.classList.add('save-task');
+        selectedTask = task;
         toggleTaskDisplays(taskDisplay, detailsModal);
         } else if (task.classList.contains('remove-mode')) {
             task.parentNode.removeChild(task);
+            currProj[currTask] = undefined;
         }
     });
 
+
     function saveTask() {
-        task.innerHTML = titleSelect.value;
-        currTask.title = titleSelect.value;
-        currTask.desc = descSelect.value;
-        titleSelect.value = '';
-        descSelect.value = '';
-        toggleTaskDisplays(taskDisplay, detailsModal);
+        const displayTasks = document.querySelectorAll('#task-display > p');
+    
+        console.log(selectedTask);
+
+        projectTaskList.forEach(proj => {
+            if (displayTasks[0].className == proj.id) {
+                    for (let i = 1; i <= 5; i++) {
+                        if (selectedTask.innerHTML === proj[`task${i}`].title) {
+                            proj[`task${i}`].title = titleSelect.value;
+                            proj[`task${i}`].desc = descSelect.value;
+                            console.log(proj[`task${i}`]);
+                            selectedTask.innerHTML = proj[`task${i}`].title;
+                            return;
+                        }
+                    }
+            }
+        })
     }
 
     taskEditDetails.saveTask = saveTask;
@@ -175,12 +190,12 @@ function decisionBtnEvent(decisionBtn, detailsModal) {
     const desc = document.querySelector('.details');
     const taskDisplay = document.getElementById('task-display');
     decisionBtn.addEventListener('click', () => {
-        if (decisionBtn.innerHTML == 'create task' && taskDisplay.childNodes.length <= 6 && title.value.length >= 3) {
+        if (decisionBtn.innerHTML == 'create task' && taskDisplay.childNodes.length <= 7 && title.value.length >= 3) {
             createTask(title, desc, taskDisplay, detailsModal);
-        } else if (decisionBtn.innerHTML == 'save' && taskDisplay.childNodes.length <= 6 && title.value.length >= 3) {
+        } else if (decisionBtn.innerHTML == 'save' && taskDisplay.childNodes.length <= 7 && title.value.length >= 3) {
             taskEditDetails.saveTask();
-        } else {
-            alert('Title must be 3 characters min.')
+        } else if (title.value.length < 3) {
+            alert('Title must be 3 characters min.');
         }
     });
 
@@ -190,7 +205,6 @@ function matchFinder(arr, projID, projClass) {
     const foundMatch = arr.some(i => i.id == projID);
     if (!foundMatch) {
         arr.push(new projClass(projID));
-        console.log(arr);
     }
 }
 
@@ -212,16 +226,10 @@ function recordNewProject() {
     if (tasks <= projects) {
         matchFinder(projectTaskList, currSelectedProjID, ProjectTasks);
     }
-    
-    // Sets currSelectedProj as the selected project's object instance via matching id's
-    // Will use this same function to create unique task objects that correlate to these new project instances
-    // Note to self: I have created a separate array that will work in tandem with projectList and this is taskList
-    // This method below will create new ProjectTasks instances that will contain the same unique id as the currSelectedProj
 
     projectList.forEach(i => {
         if (i.id == currSelectedProjID) {
             currSelectedProj = i;
-            console.log(currSelectedProj);
         };
     });
 
@@ -240,25 +248,25 @@ function createTask(title, desc, taskDisplay, detailsModal) {
 
                 if(projTask[`task${i}`] == undefined) {
                     projTask[`task${i}`] = new MakeTask(title.value, desc.value);
-                    console.log(projectTaskList);
-                    console.log(projTask[`task${i}`].title);
+                    const taskDetails = document.createElement('p');
+                    taskDetails.classList.add(`${projTask.id}`);
+                    taskDetails.innerHTML = projTask[`task${i}`].title;
+                    
+                    title.value = '';
+                    desc.value = '';
+                    
+                    taskDisplay.append(taskDetails);
+                    toggleTaskDisplays(taskDisplay, detailsModal);
+                    taskEditDetails(taskDetails, taskDisplay, detailsModal, projTask, `task${i}`);
                     return;
                 }
-                
+
             }
 
         }
+
     });
 
-        // const taskDetails = document.createElement('p');
-        // taskDetails.innerHTML = currTask.title;
-
-        // title.value = '';
-        // desc.value = '';
-
-        // taskDisplay.append(taskDetails);
-        // toggleTaskDisplays(taskDisplay, detailsModal);
-        // taskEditDetails(taskDetails, taskDisplay, detailsModal, currTask);
 }
 
 export function newTaskDetails() {
