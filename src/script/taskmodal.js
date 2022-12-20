@@ -202,12 +202,22 @@ function recordNewProject() {
     const tasks = projectTaskList.length;
 
     let currSelectedProj;
+
+    // Adds new instance of project as a new object in projectList array
+    
+    if (projects < mainChilds) {
+        matchFinder(projectList, currSelectedProjID, ProjectID);
+    }
+    
+    if (tasks <= projects) {
+        matchFinder(projectTaskList, currSelectedProjID, ProjectTasks);
+    }
     
     // Sets currSelectedProj as the selected project's object instance via matching id's
     // Will use this same function to create unique task objects that correlate to these new project instances
     // Note to self: I have created a separate array that will work in tandem with projectList and this is taskList
     // This method below will create new ProjectTasks instances that will contain the same unique id as the currSelectedProj
-    
+
     projectList.forEach(i => {
         if (i.id == currSelectedProjID) {
             currSelectedProj = i;
@@ -215,34 +225,32 @@ function recordNewProject() {
         };
     });
 
-    // Adds new instance of project as a new object in projectList array
-    
-    if (projects < mainChilds) {
-        matchFinder(projectList, currSelectedProjID, ProjectID);
-    }
-
-    if (tasks <= projects) {
-        matchFinder(projectTaskList, currSelectedProjID, ProjectTasks);
-    }
-
-
 }
 
 // Create and append task to Task Display modal
 function createTask(title, desc, taskDisplay, detailsModal) {
-    
     recordNewProject();
 
-    // let taskCounter = taskDisplay.childNodes.length;
-    //     let currTask = taskList[taskList.length - 1];
+    const currSelectedProjID = document.querySelector('.selected-proj').id;
 
-    //     const taskDetails = document.createElement('p');
-    //     taskDetails.setAttribute('id', `task-${taskList.length - 1}`);
-    //     taskDetails.innerHTML = currTask.title;
+    projectTaskList.forEach(projTask => {
+        if (projTask.id == currSelectedProjID) {
 
+            for (let i = 1; i <= 5; i++) {
 
-    // Clear Task Detail input areas
+                if(projTask[`task${i}`] == undefined) {
+                    projTask[`task${i}`] = new MakeTask(title.value, desc.value);
+                    console.log(projectTaskList);
+                    console.log(projTask[`task${i}`].title);
+                    return;
+                }
+            return;
+            }
+        }
+    });
 
+        // const taskDetails = document.createElement('p');
+        // taskDetails.innerHTML = currTask.title;
 
         // title.value = '';
         // desc.value = '';
