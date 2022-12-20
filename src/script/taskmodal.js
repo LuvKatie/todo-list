@@ -244,8 +244,9 @@ function createTask(title, desc, taskDisplay, detailsModal) {
                     console.log(projTask[`task${i}`].title);
                     return;
                 }
-            return;
+                
             }
+
         }
     });
 
