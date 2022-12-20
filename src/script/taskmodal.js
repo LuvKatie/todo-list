@@ -1,7 +1,7 @@
 const body = document.querySelector('body');
 
 let projectList = [];
-let taskList = [];
+let projectTaskList = [];
 
 class ProjectTasks {
     constructor(id, task1, task2, task3, task4, task5) {
@@ -186,27 +186,28 @@ function decisionBtnEvent(decisionBtn, detailsModal) {
 
 }
 
-// Create and append task to Task Display modal
-function createTask(title, desc, taskDisplay, detailsModal) {
+function matchFinder(arr, projID, projClass) {
+    const foundMatch = arr.some(i => i.id == projID);
+    if (!foundMatch) {
+        arr.push(new projClass(projID));
+        console.log(arr);
+    }
+}
+
+function recordNewProject() {
     const main = document.querySelector('main');
     const currSelectedProjID = document.querySelector('.selected-proj').id;
     const mainChilds = main.childNodes.length;
     const projects = projectList.length;
+    const tasks = projectTaskList.length;
 
     let currSelectedProj;
-
-    // Adds new instance of project as a new object in projectList array
-    if (projects < mainChilds) {
-        const found = projectList.some(i => i.id == currSelectedProjID);
-        if (!found) {
-            projectList.push(new ProjectID(currSelectedProjID));
-            console.log(projectList);
-        }
-    }
+    
     // Sets currSelectedProj as the selected project's object instance via matching id's
     // Will use this same function to create unique task objects that correlate to these new project instances
     // Note to self: I have created a separate array that will work in tandem with projectList and this is taskList
     // This method below will create new ProjectTasks instances that will contain the same unique id as the currSelectedProj
+    
     projectList.forEach(i => {
         if (i.id == currSelectedProjID) {
             currSelectedProj = i;
@@ -214,6 +215,23 @@ function createTask(title, desc, taskDisplay, detailsModal) {
         };
     });
 
+    // Adds new instance of project as a new object in projectList array
+    
+    if (projects < mainChilds) {
+        matchFinder(projectList, currSelectedProjID, ProjectID);
+    }
+
+    if (tasks <= projects) {
+        matchFinder(projectTaskList, currSelectedProjID, ProjectTasks);
+    }
+
+
+}
+
+// Create and append task to Task Display modal
+function createTask(title, desc, taskDisplay, detailsModal) {
+    
+    recordNewProject();
 
     // let taskCounter = taskDisplay.childNodes.length;
     //     let currTask = taskList[taskList.length - 1];
