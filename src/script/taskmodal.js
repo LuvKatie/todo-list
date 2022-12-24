@@ -38,7 +38,7 @@ export function taskModal() {
     for (let i = 0; i < buttonClasses.length; i++) {
         const headerBtn = document.createElement('button');
         headerBtn.classList.add(`${buttonClasses[i]}`);
-        headerBtn.innerHTML = `${buttonClasses[i]}`;
+        headerBtn.textContent = `${buttonClasses[i]}`;
         formHeader.appendChild(headerBtn);
     }
 
@@ -68,7 +68,7 @@ export function newTaskEvent() {
         taskDetails.classList.toggle('task-details');
 
         // Display ' CREATE TASK ' button
-        decisionBtn.innerHTML = 'create task'
+        decisionBtn.textContent = 'create task'
         decisionBtn.classList.add('create-task');
         decisionBtn.classList.remove('save-task');
         }
@@ -81,7 +81,7 @@ export function exitModal() {
 
     exitModalFn(taskExitBtn);
     taskExitBtn.setAttribute('id', 'task-modal-exit');
-    taskExitBtn.innerHTML = 'X';
+    taskExitBtn.textContent = 'X';
 
     taskDisplay.appendChild(taskExitBtn);
 }
@@ -134,7 +134,7 @@ function taskEditDetails(task, taskDisplay, detailsModal, currProj, currTask) {
         if (!task.classList.contains('remove-mode')) {
         titleSelect.value = currProj[currTask].title;
         descSelect.value = currProj[currTask].desc;
-        decisionBtn.innerHTML = 'save';
+        decisionBtn.textContent = 'save';
         decisionBtn.classList.remove('create-task');
         decisionBtn.classList.add('save-task');
         selectedTask = task;
@@ -154,11 +154,14 @@ function taskEditDetails(task, taskDisplay, detailsModal, currProj, currTask) {
         projectTaskList.forEach(proj => {
             if (displayTasks[0].className == proj.id) {
                     for (let i = 1; i <= 5; i++) {
-                        if (selectedTask.innerHTML === proj[`task${i}`].title) {
+                        if (selectedTask.textContent === proj[`task${i}`].title) {
                             proj[`task${i}`].title = titleSelect.value;
                             proj[`task${i}`].desc = descSelect.value;
                             console.log(proj[`task${i}`]);
-                            selectedTask.innerHTML = proj[`task${i}`].title;
+                            selectedTask.textContent = proj[`task${i}`].title;
+                            toggleTaskDisplays(taskDisplay, detailsModal);
+                            titleSelect.value = '';
+                            descSelect.value = '';
                             return;
                         }
                     }
@@ -190,9 +193,9 @@ function decisionBtnEvent(decisionBtn, detailsModal) {
     const desc = document.querySelector('.details');
     const taskDisplay = document.getElementById('task-display');
     decisionBtn.addEventListener('click', () => {
-        if (decisionBtn.innerHTML == 'create task' && taskDisplay.childNodes.length <= 7 && title.value.length >= 3) {
+        if (decisionBtn.textContent == 'create task' && taskDisplay.childNodes.length <= 7 && title.value.length >= 3) {
             createTask(title, desc, taskDisplay, detailsModal);
-        } else if (decisionBtn.innerHTML == 'save' && taskDisplay.childNodes.length <= 7 && title.value.length >= 3) {
+        } else if (decisionBtn.textContent == 'save' && taskDisplay.childNodes.length <= 7 && title.value.length >= 3) {
             taskEditDetails.saveTask();
         } else if (title.value.length < 3) {
             alert('Title must be 3 characters min.');
@@ -250,7 +253,7 @@ function createTask(title, desc, taskDisplay, detailsModal) {
                     projTask[`task${i}`] = new MakeTask(title.value, desc.value);
                     const taskDetails = document.createElement('p');
                     taskDetails.classList.add(`${projTask.id}`);
-                    taskDetails.innerHTML = projTask[`task${i}`].title;
+                    taskDetails.textContent = projTask[`task${i}`].title;
                     
                     title.value = '';
                     desc.value = '';
@@ -293,7 +296,7 @@ export function newTaskDetails() {
     
     decisionBtn.setAttribute('id', 'decision');
 
-    exitBtn.innerHTML = 'X';
+    exitBtn.textContent = 'X';
     exitBtn.classList.add('exit-details');
 
     newTaskContainer.classList.add('hidden');

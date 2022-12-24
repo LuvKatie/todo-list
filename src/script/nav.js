@@ -1,7 +1,7 @@
 const nav = document.querySelector('nav');
 
 let navDirectory = (() => {
-    let navNames = ['Home', 'All Projects', 'Completed', 'New Project'];
+    let navNames = ['Home', 'All Projects', 'New Project'];
 
     navNames.forEach(link => {
         const name = document.createElement('h2');

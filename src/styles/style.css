@@ -31,4 +31,6 @@ main {
     background-color: #f8f8f8;
 
     overflow: auto;
+
+    width: clamp(1630px, 1631px, 100%);
 }

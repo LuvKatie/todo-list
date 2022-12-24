@@ -5,11 +5,11 @@ module.exports = {
   mode: "development",
   entry: {
     index: './src/script/index.js',
-    todo_tasks: './src/script/todo_tasks.js',
     taskmodal: './src/script/taskmodal.js',
     form: './src/script/form.js',
     nav: './src/script/nav.js',
     mainContent: './src/script/mainContent.js',
+    pseudo_notes: './src/script/pseudo_notes.js',
   },
   plugins: [
     new HtmlWebpackPlugin({
