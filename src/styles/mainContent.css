@@ -104,3 +104,54 @@
     transform: translateY(-1px);
     cursor: pointer;
 }
+
+/* Page buttons */
+
+#page-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+    grid-row: 8 / -1;
+}
+
+.next-page,
+.prev-page {
+    position: relative;
+    height: 18px;
+    width: 50px;
+    border: none;
+    background-color: #b7b9f4;
+    color: white;
+    font-weight: 600;
+}
+
+.next-page:hover,
+.prev-page:hover {
+    cursor: pointer;
+}
+
+/* Button arrows by (Brent Lagerman): https://codepen.io/condensed/pen/MwzQym */
+
+.next-page::after,
+.prev-page::after {
+    content: '';
+    position: absolute;
+    border-bottom: 9px solid transparent;
+    border-top: 9px solid transparent;
+    height: 0px;
+    width: 0px;
+    bottom: 0px;
+}
+
+.next-page::after {
+    border-left: 9px solid #b7b9f4;
+    margin-right: -9px;
+    right: 0;
+}
+
+.prev-page::after {
+    border-right: 9px solid #b7b9f4;
+    margin-left: -9px;
+    left: 0;
+}

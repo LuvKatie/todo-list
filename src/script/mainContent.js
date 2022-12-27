@@ -2,10 +2,9 @@ import task from '../images/task-svgrepo-com.svg';
 import trash from '../images/trash-bin-svgrepo-com.svg';
 import edit from '../images/write-svgrepo-com.svg';
 
-import { populateTasks } from './taskmodal';
-
 const main = document.querySelector('main');
 
+let projectList;
 
 export let projectDOM = function(title, date, priority) {
     const projSections = ['complete', 'proj-title', 'deadline', 'options'];
@@ -62,6 +61,27 @@ export let projectDOM = function(title, date, priority) {
         main.append(projectContainer);
 
         projPriority(priority, projCard);
+}
+
+export function nextPageButtons(list, page) {
+    const buttonContainer = document.createElement('div');
+    if (page == 1) {
+        const nextBtn = document.createElement('button');
+        const prevBtn = document.createElement('button');
+        nextBtn.classList.add('next-page');
+        prevBtn.classList.add('prev-page');
+
+        nextBtn.textContent = 'Next';
+        prevBtn.textContent = 'Prev';
+        buttonContainer.setAttribute('id', 'page-buttons');
+
+        buttonContainer.append(prevBtn, nextBtn);
+        main.appendChild(buttonContainer);
+    }
+}
+
+function nextPageFunc() {
+
 }
 
 function projPriority(priority, projCard) {

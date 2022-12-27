@@ -1,4 +1,4 @@
-import { projectDOM } from "./mainContent";
+import { projectDOM, nextPageButtons } from "./mainContent";
 
 let projectList = [];
 
@@ -132,9 +132,13 @@ let formBtnEvent = (() => {
             currentPage));
 
     let thisProject = projectList[projectList.length - 1];
-    console.log(projectList);
 
-    projectDOM(thisProject.title, thisProject.date, thisProject.priority);
-
+    if (thisProject.page == 1) {
+        projectDOM(thisProject.title, thisProject.date, thisProject.priority, thisProject.page);
+    } 
+    // Every 7 projects we will run nextPage function and reattach an event listener to the next arrow to display the correct projects
+    if (projectList.length % 7 == 0) {
+        nextPageButtons(projectList, currentPage);
+    };
     });
 })();
