@@ -82,6 +82,7 @@ export function nextPageButtons(list, page) {
     }
 
     if (list.length % 7 == 1) {
+        console.log(page)
         nextPageFunc(list, page);
     }
 
@@ -101,14 +102,14 @@ function clearMain() {
 }
 
 function nextPageFunc(list, page) {
-    console.log('I ran');
     const next = document.querySelector('.next-page');
     nextPageButtons.togglePageClasses('next');
+    
     next.addEventListener('click', () => {
         clearMain();
     
         list.forEach(project => {
-            if (project.page == 2) {
+            if (project.page == page) {
                 projectDOM(project.title, project.date, project.priority);
             }
         });
