@@ -1,12 +1,15 @@
 import { projectDOM } from "./mainContent";
 
+let projectList = [];
+
 class Project {
-    constructor (title, date, priority, desc, id) {
+    constructor (title, date, priority, desc, id, page) {
         this.title = title;
         this.date = date;
         this.priority = priority;
         this.desc = desc;
         this.id = id;
+        this.page = page;
     }
 }
 
@@ -97,7 +100,7 @@ let priorityDropDown = (() => {
     
     form.append(priorityLabel);
     priorityLabel.append(prioritySelect);
-})()
+})();
 
 let formButton = (() => {
     const btnWrapper = document.createElement('div');
@@ -108,7 +111,7 @@ let formButton = (() => {
     submitBtn.innerHTML = 'Create';
     form.append(btnWrapper);
     btnWrapper.append(submitBtn);
-})()
+})();
 
 let formBtnEvent = (() => {
     const titleSelector = document.querySelector('#modal-title');
@@ -117,21 +120,21 @@ let formBtnEvent = (() => {
     const descSelector = document.querySelector('#modal-description');
     const btnSelector = document.querySelector('#submit');
 
+    
     btnSelector.addEventListener('click', () => {
-        // projectList.push(new Project(
-        //     titleSelector.value, 
-        //     dateSelector.value, 
-        //     prioritySelector.value, 
-        //     descSelector.value,
-        //     projectList.length + 1))
+    let currentPage = Math.ceil((projectList.length + 1) / 7);
+        projectList.push(new Project(
+            titleSelector.value, 
+            dateSelector.value, 
+            prioritySelector.value, 
+            descSelector.value,
+            projectList.length + 1,
+            currentPage));
 
-        // projectList[projectList.length - 1].tasks = new ProjectTasks();
+    let thisProject = projectList[projectList.length - 1];
+    console.log(projectList);
 
+    projectDOM(thisProject.title, thisProject.date, thisProject.priority);
 
-        // STILL NEED TO PROVIDE THIS CONTENT INTO AN OBJECT SO WE CAN DISPLAY IT UPON EXPANDING A PROJECT
-
-        projectDOM(titleSelector.value, dateSelector.value, prioritySelector.value);
     });
 })();
-
-//gh-pages

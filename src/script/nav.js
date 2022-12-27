@@ -25,5 +25,3 @@ let newProjEvent = (() => {
     });
 
 })();
-
-//gh-pages
