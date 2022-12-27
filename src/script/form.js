@@ -133,11 +133,14 @@ let formBtnEvent = (() => {
 
     let thisProject = projectList[projectList.length - 1];
 
+    console.log(projectList);
+
     if (thisProject.page == 1) {
         projectDOM(thisProject.title, thisProject.date, thisProject.priority, thisProject.page);
     } 
-    // Every 7 projects we will run nextPage function and reattach an event listener to the next arrow to display the correct projects
-    if (projectList.length % 7 == 0) {
+
+    if (projectList.length % 7 == 0 || projectList.length > 7) {
+        console.log(projectList.length % 7);
         nextPageButtons(projectList, currentPage);
     };
     });

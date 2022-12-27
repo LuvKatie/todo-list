@@ -65,11 +65,13 @@ export let projectDOM = function(title, date, priority) {
 
 export function nextPageButtons(list, page) {
     const buttonContainer = document.createElement('div');
+    const nextBtn = document.createElement('button');
+    const prevBtn = document.createElement('button');
     if (page == 1) {
-        const nextBtn = document.createElement('button');
-        const prevBtn = document.createElement('button');
         nextBtn.classList.add('next-page');
         prevBtn.classList.add('prev-page');
+        nextBtn.classList.add('disabled-page-btn');
+        prevBtn.classList.add('disabled-page-btn');
 
         nextBtn.textContent = 'Next';
         prevBtn.textContent = 'Prev';
@@ -78,10 +80,39 @@ export function nextPageButtons(list, page) {
         buttonContainer.append(prevBtn, nextBtn);
         main.appendChild(buttonContainer);
     }
+
+    if (list.length % 7 == 1) {
+        nextPageFunc(list, page);
+    }
+
+    function togglePageClasses(btn) {
+        btn == 'next' ? nextBtn.classList.toggle('disabled-page-btn') : prevBtn.classList.toggle('disabled-page-btn');
+    }
+
+
+    nextPageButtons.togglePageClasses = togglePageClasses;
 }
 
-function nextPageFunc() {
+function clearMain() {
+    const projects = document.querySelectorAll('.projContainer');
+    projects.forEach(item => {
+        item.parentNode.removeChild(item);
+    });
+}
 
+function nextPageFunc(list, page) {
+    console.log('I ran');
+    const next = document.querySelector('.next-page');
+    nextPageButtons.togglePageClasses('next');
+    next.addEventListener('click', () => {
+        clearMain();
+    
+        list.forEach(project => {
+            if (project.page == 2) {
+                projectDOM(project.title, project.date, project.priority);
+            }
+        });
+    });
 }
 
 function projPriority(priority, projCard) {
