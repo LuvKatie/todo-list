@@ -85,13 +85,6 @@ export function nextPageButtons(list, page) {
         console.log(page)
         nextPageFunc(list, page);
     }
-
-    function togglePageClasses(btn) {
-        btn == 'next' ? nextBtn.classList.toggle('disabled-page-btn') : prevBtn.classList.toggle('disabled-page-btn');
-    }
-
-
-    nextPageButtons.togglePageClasses = togglePageClasses;
 }
 
 function clearMain() {
@@ -103,17 +96,24 @@ function clearMain() {
 
 function nextPageFunc(list, page) {
     const next = document.querySelector('.next-page');
-    nextPageButtons.togglePageClasses('next');
+    next.classList.remove('disabled-page-btn');
     
-    next.addEventListener('click', () => {
+    
+    function populateMain() {
         clearMain();
-    
+        
+        next.classList.add('disabled-page-btn');
         list.forEach(project => {
             if (project.page == page) {
                 projectDOM(project.title, project.date, project.priority);
             }
         });
-    });
+
+        next.removeEventListener('click', populateMain);
+    };
+
+    next.addEventListener('click', populateMain);
+
 }
 
 function projPriority(priority, projCard) {

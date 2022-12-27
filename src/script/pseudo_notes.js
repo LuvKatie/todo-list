@@ -2,15 +2,20 @@
 
 // Just finished fixing save functionality
 
-// Move on to being able to edit Projects themselves with another popup modal
+// Edit project ability
+// Deleting Projects
 
-// Test adding deleting Projects first
-// Test draw and drop re-arranging for Projects
+// Nav bar should be Home and All Projects
+// On Home if user presses Create Project it will just take them to All Projects and following that bring up the Create Project modal
 
-// Final touches should be a drop-down menu filter for Project priority
-// Nav bar should include a " Completed " section and " In Progress "
+// Restyle ' Home ' page to have " Other projects " hanging to the right half of main
+// and the ' Main ' project hanging on the left half of main
 
-// Restyle the page to fit criteria aka have 1 main project showing and an " All Projects " tab on the left
-// In THIs ^^^^ instance we might just create a separate HTML page for the Main landing page and redirect the " All Projects " link back to our current setup
-// Swap index.html to the 1 main project page, and refactor the rest of our stuff so that our existing code DOM appends to a new html file titled "All-Projects"
-// Could possibly do this with the other pages too
+// ------------- 12 / 27 / 2022 -------------
+
+// Added DOM for next and previous page buttons
+// Added functionality to display the next page of contents correctly
+
+// Need to add a function to manipulate the behavior of the " submit " button within the ' New Project ' form
+// Basically what it will say is.. Hey if the user is already on the next page before its finished
+// We will 

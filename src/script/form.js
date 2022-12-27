@@ -114,6 +114,7 @@ let formButton = (() => {
 })();
 
 let formBtnEvent = (() => {
+    const main = document.querySelector('main');
     const titleSelector = document.querySelector('#modal-title');
     const dateSelector = document.querySelector('#modal-deadline');
     const prioritySelector = document.querySelector('#modal-priority');
@@ -135,13 +136,15 @@ let formBtnEvent = (() => {
 
     console.log(projectList);
 
-    if (thisProject.page == 1) {
+    if (main.childNodes.length <= 7) {
+        console.log(projectList.length % 7);
         projectDOM(thisProject.title, thisProject.date, thisProject.priority, thisProject.page);
     } 
-
-    if (projectList.length % 7 == 0 || projectList.length > 7) {
+    
+    if (projectList.length % 7 == 0 && projectList.length >= 7 || projectList.length % 7 == 1 && projectList.length > 7) {
         console.log(projectList.length % 7);
         nextPageButtons(projectList, currentPage);
-    };
+    }
+
     });
 })();
