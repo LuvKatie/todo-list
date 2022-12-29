@@ -2,9 +2,9 @@ import task from '../images/task-svgrepo-com.svg';
 import trash from '../images/trash-bin-svgrepo-com.svg';
 import edit from '../images/write-svgrepo-com.svg';
 
-const main = document.querySelector('main');
+import { iconEvents } from './taskmodal.js';
 
-let projectList;
+const main = document.querySelector('main');
 
 export let projectDOM = function(title, date, priority) {
     const projSections = ['complete', 'proj-title', 'deadline', 'options'];
@@ -128,41 +128,4 @@ function projPriority(priority, projCard) {
             projCard.style.backgroundColor = "rgb(249 132 132)";
             break;
     };
-}
-
-// Filters the project elements to remove selected-proj class if they were not the intended target
-function selectedProject(iconParent) {
-    iconParent.classList.add('selected-proj');
-    const includesClass = document.querySelectorAll('main > div > .selected-proj');
-
-    if (includesClass.length > 1) {
-        includesClass.forEach(e => {
-            if (e.classList.contains('selected-proj') && e !== iconParent) {
-                e.classList.remove('selected-proj');
-            }
-        });
-    }
-}
-
-function iconEvents(task, edit, trash) {
-    
-    task.addEventListener('click', () => {
-        const iconParent = task.closest('.project');
-        const taskDisplay = document.querySelector('.task-modal');
-        
-        taskDisplay.classList.remove('hidden');
-        taskDisplay.classList.add('shown');
-        
-        selectedProject(iconParent);
-    });
-    
-    edit.addEventListener('click', () => {
-        const iconParent = edit.closest('.project');
-        iconParent.style.backgroundColor = 'lightblue';
-    });
-    
-    trash.addEventListener('click', () => {
-        const iconParent = trash.closest('.project');
-        iconParent.style.backgroundColor = 'lightgreen';
-    });
 }
