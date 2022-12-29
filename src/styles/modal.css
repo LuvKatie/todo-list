@@ -28,6 +28,6 @@
 
 .shown {
     visibility: visible;
-    -webkit-animation: fadeIn 0.2s;
-    animation: fadeIn 0.2s
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
 }

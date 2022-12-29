@@ -146,28 +146,31 @@ function taskEditDetails(task, taskDisplay, detailsModal, currProj, currTask) {
     });
 
 
-    function saveTask() {
-        const displayTasks = document.querySelectorAll('#task-display > p');
-    
-        console.log(selectedTask);
+function saveTask() {
+    const displayTasks = document.querySelectorAll('#task-display > p');
 
-        projectTaskList.forEach(proj => {
-            if (displayTasks[0].className == proj.id) {
-                    for (let i = 1; i <= 5; i++) {
-                        if (selectedTask.textContent === proj[`task${i}`].title) {
-                            proj[`task${i}`].title = titleSelect.value;
-                            proj[`task${i}`].desc = descSelect.value;
-                            console.log(proj[`task${i}`]);
-                            selectedTask.textContent = proj[`task${i}`].title;
-                            toggleTaskDisplays(taskDisplay, detailsModal);
-                            titleSelect.value = '';
-                            descSelect.value = '';
-                            return;
-                        }
+    console.log(selectedTask);
+    console.log(projectTaskList);
+    
+    projectTaskList.forEach(proj => {
+        if (displayTasks[0].className == proj.id) {
+                for (let i = 1; i <= 5; i++) {
+                    if (proj[`task${i}`] == undefined) {
+                        continue;
+                    } else if (selectedTask.textContent === proj[`task${i}`].title) {
+                        proj[`task${i}`].title = titleSelect.value;
+                        proj[`task${i}`].desc = descSelect.value;
+                        console.log(proj[`task${i}`]);
+                        selectedTask.textContent = proj[`task${i}`].title;
+                        toggleTaskDisplays(taskDisplay, detailsModal);
+                        titleSelect.value = '';
+                        descSelect.value = '';
+                        return;
                     }
-            }
-        })
-    }
+                }
+        }
+    })
+}
 
     taskEditDetails.saveTask = saveTask;
 }

@@ -81,6 +81,7 @@ let deadlineFunc = (() => {
 
 let priorityDropDown = (() => {
     // Creating priority drop down selection
+    const priorityOptions = ['Low', 'Medium', 'High']
     const priorityLabel = document.createElement('label');
     const prioritySelect = document.createElement('select');
     
@@ -91,10 +92,10 @@ let priorityDropDown = (() => {
     prioritySelect.setAttribute('name', 'importance');
     
     
-    for(let i = 1; i <= 4; i++) {
+    for(let i = 0; i < priorityOptions.length; i++) {
         const option = document.createElement('option');
-        option.setAttribute('value', i);
-        option.innerHTML = `${i}`;
+        option.setAttribute('value', priorityOptions[i]);
+        option.innerHTML = `${priorityOptions[i]}`;
         prioritySelect.append(option);
     }
     
@@ -124,6 +125,8 @@ let formBtnEvent = (() => {
     
     btnSelector.addEventListener('click', () => {
     let currentPage = Math.ceil((projectList.length + 1) / 7);
+    
+    if (projectList.length < 21) {
         projectList.push(new Project(
             titleSelector.value, 
             dateSelector.value, 
@@ -131,18 +134,20 @@ let formBtnEvent = (() => {
             descSelector.value,
             projectList.length + 1,
             currentPage));
-
-    let thisProject = projectList[projectList.length - 1];
-
-    console.log(projectList);
-
-    if (main.childNodes.length <= 7) {
-        console.log(projectList.length % 7);
-        projectDOM(thisProject.title, thisProject.date, thisProject.priority, thisProject.page);
-    } 
+        }
+        
+    let length = projectList.length;
+    let thisProject = projectList[length - 1];
     
-    if (projectList.length % 7 == 0 && projectList.length >= 7 || projectList.length % 7 == 1 && projectList.length > 7) {
-        console.log(projectList.length % 7);
+    if (main.childNodes.length <= 7 && length <= 21) {
+        projectDOM(thisProject.title, thisProject.date, thisProject.priority, thisProject.page);
+    } else if (length == 21 && main.childNodes.length == 8) {
+        alert('You have reached the maximum amount of pages (3)');
+    }
+    
+    if (length % 7 == 0 && length >= 7 && length <= 21 || 
+        length % 7 == 1 && length > 7 && length <= 21) {
+        console.log(length % 7);
         nextPageButtons(projectList, currentPage);
     }
 

@@ -118,16 +118,13 @@ function nextPageFunc(list, page) {
 
 function projPriority(priority, projCard) {
     switch(priority) {
-        case "1":
-            projCard.style.backgroundColor = "#fcfcfc";
-            break;
-        case "2":
-            projCard.style.backgroundColor = "rgb(188 205 249)";
-            break;
-        case "3":
+        case "Low":
             projCard.style.backgroundColor = "#adf7d1";
             break;
-        case "4":
+        case "Medium":
+            projCard.style.backgroundColor = "rgb(188 205 249)";
+            break;
+        case "High":
             projCard.style.backgroundColor = "rgb(249 132 132)";
             break;
     };

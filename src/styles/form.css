@@ -53,14 +53,16 @@ form > label > *:focus{
     border-radius: 12px;
     border: none;
 
-    background-color: var(--light-green);
-    color: black;
-
+    background-color: #cadefc;
+    color: white;
+    
     font-size: 18px;
+    font-weight: 600;
 }
 
 #submit:hover {
-    box-shadow: 0 0 10px 4px var(--hover-green);
+    background-color: var(--light-green);
+    color: black;
     transition: 0.6s;
     cursor: pointer;
 }
