@@ -96,17 +96,9 @@ function attachTaskListeners(project) {
     // const detailsModal = document.getElementById('task-details');
     let length = existingTasks.length;
     console.log(projectTaskList);
-    if (length >= 1 && existingTasks[0].className != project.id) {
-        existingTasks.forEach(task => task.removeEventListener);
-        existingTasks.forEach(task => {
-            projectTaskList.forEach(item => {
-                console.log(item);
-                if (item.id == project.id && item[task1] != undefined) {
-                        task.classList.replace(task.className, item.id);
-                        task.textContent = item[task1].title;
-                }
-            })
-        });
+    if (existingTasks[0] && existingTasks[0].className !== project.id) {
+        console.log(existingTasks[0].className)
+        console.log(project.id)
     }
 }
 
@@ -298,26 +290,23 @@ function recordNewProject() {
 function createTask(title, desc, taskDisplay, detailsModal) {
     recordNewProject();
     const currSelectedProjID = document.querySelector('.selected-proj').id;
-
-    if (taskDisplay.childNodes.length == 2) {
-    
-            const currTaskBtn = document.querySelector('.selected-proj > .options > .taskBtn');
-            const cloneTaskBtn = currTaskBtn.cloneNode(true);
-    
-            currTaskBtn.parentNode.replaceChild(cloneTaskBtn, currTaskBtn);
-    
+// Upon creating first ever task all taskBtn's will have event listeners renewed to be able to retrieve data from projectTaskList
+        const currTaskBtn = document.querySelectorAll('.taskBtn');
+        currTaskBtn.forEach(btn => {
+            const cloneTaskBtn = btn.cloneNode(true);
+            btn.parentNode.replaceChild(cloneTaskBtn, btn);
+            console.log(cloneTaskBtn.parentNode);
             cloneTaskBtn.addEventListener('click', () => {
-            const taskDisplay = document.querySelector('.task-modal');
-    
-            const currSelectedProj = cloneTaskBtn.closest('.project');
-            taskDisplay.classList.remove('hidden');
-            taskDisplay.classList.add('shown');
-            
-            selectedProject(currSelectedProj);
-            attachTaskListeners(currSelectedProj);
-            });
-            console.log(taskDisplay.childNodes.length);
-    }
+                const taskDisplay = document.querySelector('.task-modal');
+        
+                const currSelectedProj = cloneTaskBtn.closest('.project');
+                taskDisplay.classList.remove('hidden');
+                taskDisplay.classList.add('shown');
+                
+                selectedProject(currSelectedProj);
+                attachTaskListeners(currSelectedProj);
+                });
+        })
 
     projectTaskList.forEach(projTask => {
         if (projTask.id == currSelectedProjID) {
