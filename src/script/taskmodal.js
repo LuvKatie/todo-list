@@ -65,16 +65,26 @@ function selectedProject(iconParent) {
     }
 }
 
+function clearTasks() {
+    const allTasks = document.querySelectorAll('#task-display > p');
+
+    allTasks.forEach(item => {
+        console.log(item);
+        item.parentNode.removeChild(item);
+    });
+}
+
 export function iconEvents(task, edit, trash) {
     
     task.addEventListener('click', () => {
         const iconParent = task.closest('.project');
         const taskDisplay = document.querySelector('.task-modal');
-        
+
         taskDisplay.classList.remove('hidden');
         taskDisplay.classList.add('shown');
         
         selectedProject(iconParent);
+        clearTasks();
     });
     
     edit.addEventListener('click', () => {
@@ -92,13 +102,26 @@ function attachTaskListeners(project) {
     const existingTasks = document.querySelectorAll('#task-display > p');
 
     const taskDisplay = document.getElementById('task-display');
-
     // const detailsModal = document.getElementById('task-details');
-    let length = existingTasks.length;
-    console.log(projectTaskList);
+
     if (existingTasks[0] && existingTasks[0].className !== project.id) {
-        console.log(existingTasks[0].className)
+        clearTasks();
+        console.log(projectTaskList)
         console.log(project.id)
+
+        projectTaskList.forEach(proj => {
+            if (proj.id == project.id) {
+                for (let i = 1; i < 5; i++) {
+                    if (proj[`task${i}`] != undefined) {
+                        const newTask = document.createElement('p');
+                        newTask.classList.add(`${proj.id}`);
+                        newTask.textContent = proj[`task${i}`].title;
+    
+                        taskDisplay.append(newTask);
+                    }
+                }
+            }
+        });
     }
 }
 
@@ -289,25 +312,28 @@ function recordNewProject() {
 // Create and append task to Task Display modal
 function createTask(title, desc, taskDisplay, detailsModal) {
     recordNewProject();
-    const currSelectedProjID = document.querySelector('.selected-proj').id;
-// Upon creating first ever task all taskBtn's will have event listeners renewed to be able to retrieve data from projectTaskList
-        const currTaskBtn = document.querySelectorAll('.taskBtn');
-        currTaskBtn.forEach(btn => {
+    // Upon creating first ever task all taskBtn's will have event listeners renewed to be able to retrieve data from projectTaskList
+    const currTaskBtn = document.querySelectorAll('.taskBtn');
+    currTaskBtn.forEach(btn => {
+        if (!(btn.classList.contains('renewed'))) {
             const cloneTaskBtn = btn.cloneNode(true);
             btn.parentNode.replaceChild(cloneTaskBtn, btn);
-            console.log(cloneTaskBtn.parentNode);
+            cloneTaskBtn.classList.add('renewed');
+            
             cloneTaskBtn.addEventListener('click', () => {
                 const taskDisplay = document.querySelector('.task-modal');
-        
                 const currSelectedProj = cloneTaskBtn.closest('.project');
+                
                 taskDisplay.classList.remove('hidden');
                 taskDisplay.classList.add('shown');
                 
                 selectedProject(currSelectedProj);
                 attachTaskListeners(currSelectedProj);
-                });
-        })
+            });
+        }
+    });
 
+    const currSelectedProjID = document.querySelector('.selected-proj').id;
     projectTaskList.forEach(projTask => {
         if (projTask.id == currSelectedProjID) {
 
@@ -333,7 +359,6 @@ function createTask(title, desc, taskDisplay, detailsModal) {
         }
 
     });
-
 }
 
 export function newTaskDetails() {
