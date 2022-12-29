@@ -1,5 +1,7 @@
 // 12 - 20 - 22
 
+import { newTaskDetails } from "./taskmodal"
+
 // Just finished fixing save functionality
 
 // Edit project ability
@@ -35,3 +37,9 @@
 // THEN THE FINAL TASK IS REALLY JUST Edit / Delete projects
 // AND restyling main and making ' All Projects ' in nav functional
 // ' All Projects ' will probably just be reworking the grid properties to display everything evenly
+
+
+// Was able to get the task button to see the array projectTaskList
+// Now we need to rework the function to remove existing new and to add new tasks with a specific title
+// Each new task needs to be hooked up to the taskEditDetails event listener
+// taskEditDetails event listener needs to be reworked to bring up details based off of our existing arrays
