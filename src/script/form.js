@@ -1,4 +1,5 @@
-import { projectDOM, nextPageButtons, mainContentProjList } from "./mainContent";
+import { projectDOM, nextPageButtons, mainContentProjList, projPriority } from "./mainContent";
+import { currSelected } from "./taskmodal";
 
 let projectList = [];
 
@@ -109,7 +110,7 @@ let formButton = (() => {
     btnWrapper.setAttribute('id', 'btn-wrap');
     submitBtn.setAttribute('id', 'submit');
     submitBtn.setAttribute('type', 'button');
-    submitBtn.innerHTML = 'Create';
+    submitBtn.textContent = 'Create';
     form.append(btnWrapper);
     btnWrapper.append(submitBtn);
 })();
@@ -123,33 +124,57 @@ let formBtnEvent = (() => {
     const btnSelector = document.querySelector('#submit');
 
     let currentPage = Math.ceil((projectList.length + 1) / 7);
-
-    
     btnSelector.addEventListener('click', () => {
-    
-    if (projectList.length < 21) {
-        [projectList, mainContentProjList].forEach(arr => arr.push(new Project(
-            titleSelector.value, 
-            dateSelector.value, 
-            prioritySelector.value, 
-            descSelector.value,
-            projectList.length + 1,
-            currentPage)))
+    if (btnSelector.textContent == 'Create') {
+        if (projectList.length < 21) {
+            [projectList, mainContentProjList].forEach(arr => arr.push(new Project(
+                titleSelector.value, 
+                dateSelector.value, 
+                prioritySelector.value, 
+                descSelector.value,
+                main.childNodes.length + 1,
+                currentPage)))
+            }
+            
+        let length = projectList.length;
+        let thisProject = projectList[length - 1];
+        
+        if (main.childNodes.length <= 7 && length <= 21) {
+            projectDOM(thisProject.title, thisProject.date, thisProject.priority, thisProject.page);
+        } else if (length == 21 && main.childNodes.length == 8) {
+            alert('You have reached the maximum amount of pages (3)');
         }
         
-    let length = projectList.length;
-    let thisProject = projectList[length - 1];
-    
-    if (main.childNodes.length <= 7 && length <= 21) {
-        projectDOM(thisProject.title, thisProject.date, thisProject.priority, thisProject.page);
-    } else if (length == 21 && main.childNodes.length == 8) {
-        alert('You have reached the maximum amount of pages (3)');
+        if (length % 7 == 0 && length >= 7 && length <= 21 || 
+            length % 7 == 1 && length > 7 && length <= 21) {
+            console.log(length % 7);
+            nextPageButtons(projectList, currentPage);
+        }
     }
-    
-    if (length % 7 == 0 && length >= 7 && length <= 21 || 
-        length % 7 == 1 && length > 7 && length <= 21) {
-        console.log(length % 7);
-        nextPageButtons(projectList, currentPage);
+
+    if (btnSelector.textContent == 'Save') {
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-description');
+        const modalDue = document.getElementById('modal-deadline');
+        const currTitle = document.querySelector(`#${currSelected.id} > .proj-title`);
+        const currDue = document.querySelector(`#${currSelected.id} > .deadline`);
+        const grabID = (+(currSelected.id.slice(currSelected.id.length - 1) + 1));
+
+
+        projectList.forEach(proj => {
+            if (proj.id == grabID) {
+                currTitle.textContent = modalTitle.value;
+                currDue.textContent = modalDue.value;
+                proj.title = modalTitle.value;
+                proj.desc = modalDesc.value;
+                proj.date = modalDue.value;
+                proj.priority = prioritySelector.value;
+            }
+        });
+
+        console.log(projectList);
+
+        projPriority(prioritySelector.value, currSelected);
     }
 
     });

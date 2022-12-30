@@ -38,7 +38,7 @@ export let projectDOM = function(title, date, priority) {
                 optionIcons.append(taskIcon, editIcon, trashIcon);
                 projCard.append(optionIcons);
 
-                iconEvents(taskIcon, editIcon, trashIcon);
+                iconEvents(taskIcon, editIcon, trashIcon, mainContentProjList);
                 break;
             default:
                 const txtDetail = document.createElement('p');
@@ -118,7 +118,7 @@ function nextPageFunc(list, page) {
 
 }
 
-function projPriority(priority, projCard) {
+export function projPriority(priority, projCard) {
     switch(priority) {
         case "Low":
             projCard.style.backgroundColor = "#adf7d1";

@@ -1,5 +1,6 @@
 const body = document.querySelector('body');
 
+export let currSelected;
 let projectList = [];
 let projectTaskList = [];
 let selectedTask;
@@ -73,8 +74,8 @@ function clearTasks() {
     });
 }
 
-export function iconEvents(task, edit, trash) {
-    
+export function iconEvents(task, edit, trash, list) {
+
     task.addEventListener('click', () => {
         const iconParent = task.closest('.project');
         const taskDisplay = document.querySelector('.task-modal');
@@ -88,7 +89,31 @@ export function iconEvents(task, edit, trash) {
     
     edit.addEventListener('click', () => {
         const iconParent = edit.closest('.project');
-        iconParent.style.backgroundColor = 'lightblue';
+
+        const modal = document.querySelector('.project-modal');
+        const taskForm = document.querySelector('.task-creator');
+        const btnSelector = document.querySelector('#submit');
+
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-description');
+        const modalDue = document.getElementById('modal-deadline');
+        const modalPrio = document.getElementById('modal-priority');
+
+        btnSelector.textContent = 'Save';
+
+        const grabID = iconParent.id.slice(iconParent.id.length - 1);
+        currSelected = iconParent;
+
+        list.forEach(proj => {
+            if (proj.id - 1 == grabID) {
+                modalTitle.value = proj.title;
+            }
+        })
+
+        taskForm.classList.toggle('hidden');
+        taskForm.classList.toggle('shown');
+        modal.classList.toggle('hidden');
+        modal.classList.toggle('shown');
     });
     
     trash.addEventListener('click', () => {
