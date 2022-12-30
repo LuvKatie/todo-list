@@ -89,6 +89,7 @@ export function iconEvents(task, edit, trash, list) {
     
     edit.addEventListener('click', () => {
         const iconParent = edit.closest('.project');
+        currSelected = iconParent;
 
         const modal = document.querySelector('.project-modal');
         const taskForm = document.querySelector('.task-creator');
@@ -101,12 +102,14 @@ export function iconEvents(task, edit, trash, list) {
 
         btnSelector.textContent = 'Save';
 
-        const grabID = iconParent.id.slice(iconParent.id.length - 1);
-        currSelected = iconParent;
+        const grabID = +(iconParent.id.slice(iconParent.id.length - 1)) + 1;
 
         list.forEach(proj => {
             if (proj.id - 1 == grabID) {
                 modalTitle.value = proj.title;
+                modalDesc.value = proj.desc;
+                modalDue.value = proj.date;
+                modalPrio.value = proj.priority;
             }
         })
 
@@ -118,7 +121,20 @@ export function iconEvents(task, edit, trash, list) {
     
     trash.addEventListener('click', () => {
         const iconParent = trash.closest('.project');
-        iconParent.style.backgroundColor = 'lightgreen';
+        const projContainer = iconParent.parentNode;
+        const grabID = +(iconParent.id.slice(iconParent.id.length - 1)) + 1;
+
+        list.forEach(proj => {
+            if (proj.id == grabID) {
+                const index = list.indexOf(proj);
+                if (index > -1) {
+                    projContainer.parentNode.removeChild(projContainer);
+                    list.splice(index, 1);
+                }
+            }
+        })
+
+        console.log(list, grabID);
     });
 }
 

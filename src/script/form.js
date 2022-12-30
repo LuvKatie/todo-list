@@ -158,7 +158,7 @@ let formBtnEvent = (() => {
         const modalDue = document.getElementById('modal-deadline');
         const currTitle = document.querySelector(`#${currSelected.id} > .proj-title`);
         const currDue = document.querySelector(`#${currSelected.id} > .deadline`);
-        const grabID = (+(currSelected.id.slice(currSelected.id.length - 1) + 1));
+        const grabID = +(currSelected.id.slice(currSelected.id.length - 1)) + 1;
 
 
         projectList.forEach(proj => {
