@@ -4,6 +4,8 @@ import edit from '../images/write-svgrepo-com.svg';
 
 import { iconEvents } from './taskmodal.js';
 
+export let mainContentProjList = [];
+
 const main = document.querySelector('main');
 
 export let projectDOM = function(title, date, priority) {

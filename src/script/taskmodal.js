@@ -69,7 +69,6 @@ function clearTasks() {
     const allTasks = document.querySelectorAll('#task-display > p');
 
     allTasks.forEach(item => {
-        console.log(item);
         item.parentNode.removeChild(item);
     });
 }
@@ -102,12 +101,10 @@ function attachTaskListeners(project) {
     const existingTasks = document.querySelectorAll('#task-display > p');
 
     const taskDisplay = document.getElementById('task-display');
-    // const detailsModal = document.getElementById('task-details');
+    const detailsModal = document.getElementById('task-details');
 
     if (existingTasks[0] && existingTasks[0].className !== project.id) {
         clearTasks();
-        console.log(projectTaskList)
-        console.log(project.id)
 
         projectTaskList.forEach(proj => {
             if (proj.id == project.id) {
@@ -118,6 +115,7 @@ function attachTaskListeners(project) {
                         newTask.textContent = proj[`task${i}`].title;
     
                         taskDisplay.append(newTask);
+                        taskEditDetails(newTask, taskDisplay, detailsModal, proj, `task${i}`);
                     }
                 }
             }

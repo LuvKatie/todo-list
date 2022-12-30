@@ -1,4 +1,4 @@
-import { projectDOM, nextPageButtons } from "./mainContent";
+import { projectDOM, nextPageButtons, mainContentProjList } from "./mainContent";
 
 let projectList = [];
 
@@ -122,18 +122,19 @@ let formBtnEvent = (() => {
     const descSelector = document.querySelector('#modal-description');
     const btnSelector = document.querySelector('#submit');
 
+    let currentPage = Math.ceil((projectList.length + 1) / 7);
+
     
     btnSelector.addEventListener('click', () => {
-    let currentPage = Math.ceil((projectList.length + 1) / 7);
     
     if (projectList.length < 21) {
-        projectList.push(new Project(
+        [projectList, mainContentProjList].forEach(arr => arr.push(new Project(
             titleSelector.value, 
             dateSelector.value, 
             prioritySelector.value, 
             descSelector.value,
             projectList.length + 1,
-            currentPage));
+            currentPage)))
         }
         
     let length = projectList.length;
