@@ -105,7 +105,7 @@ export function iconEvents(task, edit, trash, list) {
         const grabID = +(iconParent.id.slice(iconParent.id.length - 1)) + 1;
 
         list.forEach(proj => {
-            if (proj.id - 1 == grabID) {
+            if (proj.id == grabID) {
                 modalTitle.value = proj.title;
                 modalDesc.value = proj.desc;
                 modalDue.value = proj.date;
